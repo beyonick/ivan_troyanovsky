@@ -18,7 +18,13 @@ jobs:
       HOSTING_USER: ${{ vars.HOSTING_USER }}
       HOSTING_DIR: ${{ vars.HOSTING_DIR || 'ivantroyanovsky/public_html' }}
       HOSTING_PASSWORD: ${{ secrets.HOSTING_PASSWORD }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get install -y -qq lftp
-      - run: bash .github/deploy-hosting.sh --upload
+      - name: Build
+        run: bash .github/deploy-hosting.sh
+      - name: Test admin API
+        run: bash .github/test-admin.sh
+      - name: Upload
+        run: bash .github/deploy-hosting.sh --upload

@@ -20,7 +20,7 @@
 (`.github/workflows/deploy-hosting.yml`): `.github/deploy-hosting.sh` собирает
 `_deploy/` и заливает его по SFTP через `lftp mirror --delete`.
 
-В сборку не идут `admin/`, `.github/`, `README.md`, `DEPLOY.md`. Ссылки на css и
+В сборку не идут `.github/`, `README.md`, `DEPLOY.md`, `admin/server.py` и локальные бэкапы. Ссылки на css и
 js получают `?v=<хэш>`: nginx TimeWeb кэширует их на год, и без версии правки
 из админки не дошли бы до посетителей.
 
@@ -31,10 +31,26 @@ js получают `?v=<хэш>`: nginx TimeWeb кэширует их на го
 | `HOSTING_HOST` | Variables | SFTP-хост TimeWeb |
 | `HOSTING_USER` | Variables | логин хостинга |
 | `HOSTING_PASSWORD` | Secrets | пароль хостинга |
+| `ADMIN_PASSWORD` | Secrets | пароль админки на сайте (придумать) |
 | `HOSTING_DIR` | Variables, необязательно | по умолчанию `ivantroyanovsky/public_html` |
 
 Пока `HOSTING_HOST` пуст, деплой собирается и пропускает заливку с
 предупреждением. Собрать локально без заливки: `bash .github/deploy-hosting.sh`.
+
+## 1а. Админка на сайте
+
+`https://ivantroyanovsky.nicktmsh.ru/admin/` — та же админка, что локально, но
+сервер у неё `admin/api.php` (PHP хостинга). `.htaccess` переводит `/api/*` на
+него. Пароль — секрет `ADMIN_PASSWORD`; на хостинг попадает только соль и хэш
+(`admin/admin-auth.php`). 8 неверных попыток с одного IP — пауза 15 минут.
+
+«Сохранить» в ней сразу меняет сайт. Поэтому **хостинг главный** для
+`assets/content.js`, `assets/shoots.js`, `img/` и `video/`: деплой из GitHub их не
+перезаписывает и не удаляет, только докладывает отсутствующие файлы. Прежние
+версии content.js/shoots.js — в `admin/backups/` на хостинге (наружу закрыта).
+
+Перед заливкой GitHub Actions прогоняет `.github/test-admin.sh`: вход, чтение,
+сохранение, загрузка и удаление кадра на встроенном сервере PHP.
 
 ## 2. Домен и HTTPS
 

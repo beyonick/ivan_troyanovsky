@@ -1,13 +1,15 @@
 /* admin.js — админка сайта. Данные: GET /api/content → { content, shoots }.
    Всё правится в памяти и уходит на сервер одной кнопкой «Сохранить»
    (Ctrl+S). Кадры нарезает браузер: три размера webp (1600 / 960 / 360),
-   на сервер уходят готовые файлы. «Публикация» — git commit + push. */
+   на сервер уходят готовые файлы. На хостинге (admin/api.php) «Сохранить»
+   сразу меняет сайт; локально (admin/server.py) «Публикация» — git commit + push. */
 (function () {
   'use strict';
 
   var state = null;          // { content, shoots }
   var trash = [];            // файлы удалённых кадров — стираются после сохранения
   var dirty = false, tab = 'shoots', current = 0;
+  var hosting = false;       // админка на хостинге: сохранённое сразу на сайте
 
   var $ = function (s) { return document.querySelector(s); };
   var pane = $('#pane'), statusEl = $('#status'), saveBtn = $('#save');
@@ -32,6 +34,7 @@
     setStatus('Загружаю…');
     api('/api/content').then(function (d) {
       state = { content: d.content, shoots: d.shoots };
+      hosting = d.mode === 'hosting';
       dirty = false; saveBtn.disabled = true; setStatus('Всё сохранено');
       render();
     }).catch(function (e) { if (e.message !== 'auth') setStatus('Не загрузилось: ' + e.message, 'err'); });
@@ -404,6 +407,12 @@
 
   /* — Публикация — */
   function renderPublish() {
+    if (hosting) {
+      return paint(h('h2', null, 'Публикация'),
+        h('p', null, 'Эта админка работает прямо на сайте: «Сохранить» (Ctrl+S) сразу меняет сайт, отдельно публиковать не нужно.'),
+        h('p', null, 'Если страница сайта показывает старое — обновите её с Ctrl+F5.'),
+        h('p', { class: 'hint' }, 'Перед каждым сохранением прежние файлы копируются в admin/backups на хостинге — откатить можно оттуда.'));
+    }
     var log = h('pre', { class: 'log', hidden: true });
     var go = h('button', { type: 'button', class: 'primary', onclick: function () {
       go.disabled = true;
@@ -417,8 +426,8 @@
       }).then(function () { go.disabled = false; });
     } }, 'Опубликовать на сайт');
     paint(h('h2', null, 'Публикация'),
-      h('p', null, '«Сохранить» записывает изменения в файлы сайта на этом компьютере — их видно на локальном сайте сразу.'),
-      h('p', null, '«Опубликовать» отправляет сохранённое в GitHub, оттуда TimeWeb сам обновит сайт.'),
+      h('p', null, 'Это локальная админка. «Сохранить» записывает изменения в файлы на этом компьютере — их видно на локальном сайте сразу.'),
+      h('p', null, '«Опубликовать» отправляет сохранённое в GitHub. Код сайта оттуда уедет на хостинг, но тексты, съёмки и кадры там правятся в админке на сайте и из GitHub не перезаписываются — новые файлы только докладываются.'),
       h('p', { class: 'hint' }, 'Перед каждым сохранением прежние файлы копируются в admin/backups — откатить можно оттуда.'),
       h('p', null, go), log);
   }

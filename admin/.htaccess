@@ -1,0 +1,9 @@
+# Админка на хостинге: страница и admin.js открыты (без пароля в них пусто),
+# данные — только через api.php по паролю. Служебное наружу не отдаём.
+RewriteEngine On
+RewriteRule ^(admin-auth\.php|server\.py|backups/) - [F,L]
+
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set Cache-Control "no-store"
+</IfModule>
