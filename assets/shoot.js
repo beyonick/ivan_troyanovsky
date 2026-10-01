@@ -5,7 +5,7 @@
    Съёмка с собственной страницей (href) уводит на неё. */
 (function () {
   'use strict';
-  var data = window.SHOOTS || [];
+  var data = (window.SHOOTS || []).filter(function (x) { return !x.hidden; });
   var track = document.getElementById('htrack');
   if (!track) return;
 
@@ -42,6 +42,7 @@
   var html = '<section class="pan pan--intro">' +
     '<p class="lbl lines">Съёмка ' + pad(idx + 1) + ' / ' + pad(data.length) + '</p>' +
     '<h1 class="h1 lines" style="margin-top:24px">' + esc(s.title) + '</h1>' +
+    (s.intro ? '<p class="lead">' + esc(s.intro) + '</p>' : '') +
     '<div class="meta"><p class="cap lines d2" style="margin:0">' + esc(meta) + '</p></div></section>';
 
   s.frames.forEach(function (f) {

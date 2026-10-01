@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/photo-tilt.css">
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/content.js"></script>
 <script src="assets/config.js"></script>
 </head>
 <body>
@@ -79,12 +80,13 @@
     </div>
     <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Связь</p>
-      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+      <a class="nav" href="mailto:[ПОЧТА]" data-c-mail>[ПОЧТА]</a>
     </div>
     <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Смотреть</p>
-      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
-      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener" data-c-href="settings.instagram">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener" data-c-href="settings.vk" data-c-hide>VK</a>
+      <a class="nav" href="#" rel="noopener" data-c-href="settings.telegram" data-c-hide>Telegram</a>
     </div>
     <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
       <p class="lbl">Язык</p>
@@ -98,6 +100,7 @@
 </footer>
 
 <script src="assets/photo-tilt.js"></script>
+<script src="assets/bind.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

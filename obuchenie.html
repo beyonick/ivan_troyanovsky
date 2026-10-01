@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="assets/photo-tilt.css">
 <link rel="stylesheet" href="assets/site.css">
 <!-- Флаг раздела: при sections.learning = false страница уводит на главную. -->
+<script src="assets/content.js"></script>
 <script src="assets/config.js"></script>
 </head>
 <body>
@@ -57,12 +58,12 @@
         <p class="lbl lines">Обучение</p>
       </div>
       <div style="grid-column:5 / span 8">
-        <h1 class="h1 lines">Иногда я объясняю, как это устроено.</h1>
+        <h1 class="h1 lines" data-c="learning.heading">Иногда я объясняю, как это устроено.</h1>
       </div>
     </div>
     <div class="grid" style="margin-top:96px">
       <div style="grid-column:5 / span 5">
-        <p class="lead">Разбираю не настройки, а то, что происходит между людьми до нажатия на кнопку. Как войти в чужой день и не сломать его. Как разговаривать, чтобы перестали позировать. Что делать, когда света нет, а снимать надо.</p>
+        <p class="lead" data-c="learning.intro">Разбираю не настройки, а то, что происходит между людьми до нажатия на кнопку. Как войти в чужой день и не сломать его. Как разговаривать, чтобы перестали позировать. Что делать, когда света нет, а снимать надо.</p>
       </div>
     </div>
   </section>
@@ -83,13 +84,13 @@
         <div style="grid-column:1 / span 5">
           <p class="lbl lines">Онлайн</p>
           <h2 class="h2 lines" style="margin-top:32px">Видеоурок</h2>
-          <p class="txt" style="margin-top:48px">[О ЧЁМ УРОК]</p>
+          <p class="txt" style="margin-top:48px" data-c="learning.lesson.about">[О ЧЁМ УРОК]</p>
           <dl class="spec" style="margin-top:48px">
-            <div><dt>Что внутри</dt><dd>[ЧТО ВНУТРИ]</dd></div>
-            <div><dt>Длительность</dt><dd>[ДЛИТЕЛЬНОСТЬ]</dd></div>
-            <div><dt>Кому</dt><dd>[КОМУ ПОДОЙДЁТ]</dd></div>
+            <div><dt>Что внутри</dt><dd data-c="learning.lesson.inside">[ЧТО ВНУТРИ]</dd></div>
+            <div><dt>Длительность</dt><dd data-c="learning.lesson.duration">[ДЛИТЕЛЬНОСТЬ]</dd></div>
+            <div><dt>Кому</dt><dd data-c="learning.lesson.audience">[КОМУ ПОДОЙДЁТ]</dd></div>
             <div><dt>Доступ</dt><dd>Ссылка на почту после оплаты</dd></div>
-            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
+            <div><dt>Цена</dt><dd data-c="learning.lesson.price">[ЦЕНА]</dd></div>
           </dl>
           <p class="lines d1" style="margin-top:56px"><a class="btn" href="#videourok" data-buy="Видеоурок">Купить</a></p>
         </div>
@@ -114,7 +115,7 @@
     </div>
     <div class="grid" style="margin-top:96px">
       <div style="grid-column:5 / span 8">
-        <div class="bigindex reveal">
+        <div class="bigindex reveal" id="mcList">
           <div class="brow">
             <span class="bname">[МЕСТО]</span>
             <span class="bmeta"><time class="cap" style="margin:0">[ДАТА]</time><span class="cap" style="margin:0">[ФОРМАТ]</span><span class="cap" style="margin:0">[ЦЕНА]</span><span class="cap" style="margin:0">[МЕСТ] мест</span></span>
@@ -136,12 +137,13 @@
     </div>
     <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Связь</p>
-      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+      <a class="nav" href="mailto:[ПОЧТА]" data-c-mail>[ПОЧТА]</a>
     </div>
     <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Смотреть</p>
-      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
-      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener" data-c-href="settings.instagram">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener" data-c-href="settings.vk" data-c-hide>VK</a>
+      <a class="nav" href="#" rel="noopener" data-c-href="settings.telegram" data-c-hide>Telegram</a>
     </div>
     <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
       <p class="lbl">Язык</p>
@@ -157,6 +159,7 @@
 </footer>
 
 <script src="assets/photo-tilt.js"></script>
+<script src="assets/bind.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

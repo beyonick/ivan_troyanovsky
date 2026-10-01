@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <!-- Флаг раздела: при sections.shop = false страница уводит на главную
      (ТЗ v2 §4.4: меньше трёх работ — магазин скрыт). -->
+<script src="assets/content.js"></script>
 <script src="assets/config.js"></script>
 </head>
 <body>
@@ -65,7 +66,7 @@
     </div>
     <div class="grid" style="margin-top:64px">
       <div style="grid-column:5 / span 5">
-        <p class="lead">Плёнка, где просто жизнь, и личные кадры — наши с&nbsp;Лизой. Каждую работу печатаю и оформляю под заказ, поэтому покупка начинается с&nbsp;письма.</p>
+        <p class="lead" data-c="shop.intro">Плёнка, где просто жизнь, и личные кадры — наши с&nbsp;Лизой. Каждую работу печатаю и оформляю под заказ, поэтому покупка начинается с&nbsp;письма.</p>
       </div>
     </div>
   </section>
@@ -74,90 +75,13 @@
        мелко — номер, название, размер, тираж, цена, «Заказать». Сторона
        кадра чередуется — ритм неровный, как на главной. -->
 
-  <article class="work" id="w01">
-    <div class="wrap">
-      <div class="grid workgrid">
-        <div class="workframe" style="grid-column:1 / span 8">
-          <div class="ph" style="--ar:2200/1459"><img src="img/s01.jpg" alt="Он поднимает её ноги, она смеётся на кровати, плёнка" loading="lazy"></div>
-        </div>
-        <div class="workinfo" style="grid-column:10 / span 3">
-          <p class="cap lines" style="margin:0">№ 01</p>
-          <h2 class="wname lines">[НАЗВАНИЕ]</h2>
-          <dl class="spec">
-            <div><dt>Размер</dt><dd>[РАЗМЕР]</dd></div>
-            <div><dt>Тираж</dt><dd>[ТИРАЖ]</dd></div>
-            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
-          </dl>
-          <p class="lines d1" style="margin-top:32px"><a class="nav" href="#w01" data-order="Отпечаток № 01">Заказать отпечаток</a></p>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="work" id="w02">
-    <div class="wrap">
-      <div class="grid workgrid">
-        <div class="workinfo" style="grid-column:1 / span 3">
-          <p class="cap lines" style="margin:0">№ 02</p>
-          <h2 class="wname lines">[НАЗВАНИЕ]</h2>
-          <dl class="spec">
-            <div><dt>Размер</dt><dd>[РАЗМЕР]</dd></div>
-            <div><dt>Тираж</dt><dd>[ТИРАЖ]</dd></div>
-            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
-          </dl>
-          <p class="lines d1" style="margin-top:32px"><a class="nav" href="#w02" data-order="Отпечаток № 02">Заказать отпечаток</a></p>
-        </div>
-        <div class="workframe end" style="grid-column:5 / span 8">
-          <div class="ph" style="--ar:1338/2000"><img src="img/s02.jpg" alt="Поцелуй сквозь белую занавесь, плёнка" loading="lazy"></div>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="work" id="w03">
-    <div class="wrap">
-      <div class="grid workgrid">
-        <div class="workframe" style="grid-column:1 / span 8">
-          <div class="ph" style="--ar:1036/1260"><img src="img/s03.jpg" alt="Двое танцуют, она в белом, полароид" loading="lazy"></div>
-        </div>
-        <div class="workinfo" style="grid-column:10 / span 3">
-          <p class="cap lines" style="margin:0">№ 03</p>
-          <h2 class="wname lines">[НАЗВАНИЕ]</h2>
-          <dl class="spec">
-            <div><dt>Размер</dt><dd>[РАЗМЕР]</dd></div>
-            <div><dt>Тираж</dt><dd>[ТИРАЖ]</dd></div>
-            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
-          </dl>
-          <p class="lines d1" style="margin-top:32px"><a class="nav" href="#w03" data-order="Отпечаток № 03">Заказать отпечаток</a></p>
-        </div>
-      </div>
-    </div>
-  </article>
-
-  <article class="work" id="w04">
-    <div class="wrap">
-      <div class="grid workgrid">
-        <div class="workinfo" style="grid-column:1 / span 3">
-          <p class="cap lines" style="margin:0">№ 04</p>
-          <h2 class="wname lines">[НАЗВАНИЕ]</h2>
-          <dl class="spec">
-            <div><dt>Размер</dt><dd>[РАЗМЕР]</dd></div>
-            <div><dt>Тираж</dt><dd>[ТИРАЖ]</dd></div>
-            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
-          </dl>
-          <p class="lines d1" style="margin-top:32px"><a class="nav" href="#w04" data-order="Отпечаток № 04">Заказать отпечаток</a></p>
-        </div>
-        <div class="workframe end" style="grid-column:5 / span 8">
-          <div class="ph" style="--ar:1338/2000"><img src="img/s04.jpg" alt="Он сидит на кровати, запрокинув голову, плёнка" loading="lazy"></div>
-        </div>
-      </div>
-    </div>
-  </article>
+  <!-- Работы собирает bind.js из content.js (shop.works) — правятся в админке. -->
+  <div id="shopWorks"></div>
 
   <section class="wrap" style="margin-top:128px">
     <div class="grid">
       <div style="grid-column:5 / span 5">
-        <p class="txt">Печать, бумага, оформление и доставка — под каждую работу отдельно. Напишите номер работы, и я пришлю детали.</p>
+        <p class="txt" data-c="shop.note">Печать, бумага, оформление и доставка — под каждую работу отдельно. Напишите номер работы, и я пришлю детали.</p>
       </div>
     </div>
   </section>
@@ -173,12 +97,13 @@
     </div>
     <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Связь</p>
-      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+      <a class="nav" href="mailto:[ПОЧТА]" data-c-mail>[ПОЧТА]</a>
     </div>
     <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Смотреть</p>
-      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
-      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener" data-c-href="settings.instagram">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener" data-c-href="settings.vk" data-c-hide>VK</a>
+      <a class="nav" href="#" rel="noopener" data-c-href="settings.telegram" data-c-hide>Telegram</a>
     </div>
     <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
       <p class="lbl">Язык</p>
@@ -194,6 +119,7 @@
 </footer>
 
 <script src="assets/photo-tilt.js"></script>
+<script src="assets/bind.js"></script>
 <script src="assets/site.js"></script>
 </body>
 </html>

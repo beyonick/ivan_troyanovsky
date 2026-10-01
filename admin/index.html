@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Админка — Иван Трояновский</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@300&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header class="top">
+  <p class="brand">Иван Трояновский <span>· админка</span></p>
+  <p class="status" id="status" role="status" aria-live="polite">Загружаю…</p>
+  <a class="ghost" href="/" target="_blank" rel="noopener">Открыть сайт</a>
+  <button class="primary" id="save" type="button" disabled>Сохранить</button>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="Разделы">
+  <button type="button" data-tab="shoots" aria-current="true">Съёмки</button>
+  <button type="button" data-tab="home">Главная</button>
+  <button type="button" data-tab="shop">Магазин</button>
+  <button type="button" data-tab="learning">Обучение</button>
+  <button type="button" data-tab="settings">Настройки</button>
+  <button type="button" data-tab="publish">Публикация</button>
+</nav>
+
+<main class="pane" id="pane"></main>
+
+<!-- Вход: пароль из переменной ADMIN_PASSWORD сервера. -->
+<div class="login" id="login" hidden>
+  <form id="loginForm">
+    <p class="brand">Вход в админку</p>
+    <label class="f"><span>Пароль</span><input type="password" id="pw" autocomplete="current-password" required></label>
+    <button class="primary" type="submit">Войти</button>
+    <p class="hint" id="loginErr"></p>
+  </form>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

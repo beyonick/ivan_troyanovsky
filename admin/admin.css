@@ -1,0 +1,72 @@
+/* admin.css — интерфейс админки. Тот же язык, что у сайта (DESIGN.md):
+   белый холст, чёрный текст, линейки 1px, ноль скруглений и теней. */
+:root{--ink:#0A0A0A;--body:#111;--muted:#6E6E6E;--hair:#E5E5E5;--bg:#fff;--warn:#B3261E}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font:14px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:24px;padding:16px 32px;background:var(--bg);border-bottom:1px solid var(--hair)}
+.brand{margin:0;font-family:"Cormorant Infant",Georgia,serif;font-weight:300;font-size:26px;line-height:1;color:var(--ink)}
+.brand span{font-family:Inter,sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.status{margin:0 0 0 auto;font-size:12px;color:var(--muted)}
+.status.dirty{color:var(--ink)}
+.status.err{color:var(--warn)}
+.primary,.ghost,.btn{border:1px solid var(--ink);border-radius:0;padding:11px 18px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:none;min-height:40px;display:inline-flex;align-items:center}
+.primary{background:var(--ink);color:#fff}
+.primary:disabled{opacity:.3;cursor:default}
+.ghost,.btn{background:var(--bg);color:var(--ink)}
+.btn.small{padding:6px 10px;min-height:30px}
+.btn.danger{border-color:var(--warn);color:var(--warn)}
+.tabs{display:flex;gap:4px;padding:0 32px;border-bottom:1px solid var(--hair);overflow-x:auto}
+.tabs button{background:none;border:0;padding:14px 12px;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:1px solid transparent;margin-bottom:-1px}
+.tabs button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.pane{padding:32px;max-width:1280px}
+h2{font-family:"Cormorant Infant",Georgia,serif;font-weight:300;font-size:40px;line-height:1;margin:8px 0 24px;color:var(--ink)}
+h3{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:40px 0 16px}
+.hint{font-size:12px;color:var(--muted);margin:6px 0 0;max-width:70ch}
+.f{display:block;margin:0 0 18px}
+.f>span{display:block;font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.f input[type=text],.f input[type=url],.f input[type=email],.f input[type=password],.f select,.f textarea{width:100%;border:0;border-bottom:1px solid var(--hair);padding:8px 0;background:transparent;border-radius:0;outline:0}
+.f textarea{min-height:84px;resize:vertical;line-height:1.55}
+.f input:focus,.f select:focus,.f textarea:focus{border-bottom-color:var(--ink)}
+.check{display:flex;align-items:center;gap:10px;margin:0 0 14px;cursor:pointer}
+.check input{width:18px;height:18px;accent-color:var(--ink)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 32px}
+.split{display:grid;grid-template-columns:320px minmax(0,1fr);gap:40px;align-items:start}
+.list{border-top:1px solid var(--hair)}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--hair);cursor:pointer}
+.row.on{background:#F6F6F6}
+.row img{width:56px;height:40px;object-fit:cover;flex:0 0 auto;background:var(--hair)}
+.row .t{flex:1 1 auto;min-width:0}
+.row .t b{display:block;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .t small{color:var(--muted);font-size:12px}
+.tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--muted);color:var(--muted);padding:1px 6px}
+.acts{display:flex;gap:6px;flex:0 0 auto}
+.frames{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:20px}
+.frame{border:1px solid var(--hair);padding:8px}
+.frame.cover{border-color:var(--ink)}
+.frame .im{aspect-ratio:3/2;background:#F2F2F2;overflow:hidden}
+.frame .im img{width:100%;height:100%;object-fit:contain;display:block}
+.frame textarea{width:100%;border:0;border-bottom:1px solid var(--hair);font-size:12px;min-height:44px;resize:vertical;padding:6px 0;outline:0}
+.frame .fa{display:flex;align-items:center;gap:6px;margin-top:6px;flex-wrap:wrap}
+.frame .fa label{font-size:11px;display:flex;align-items:center;gap:4px;margin-right:auto;cursor:pointer}
+.drop{border:1px dashed var(--muted);padding:28px;text-align:center;color:var(--muted);margin:0 0 24px;cursor:pointer}
+.drop.over{border-color:var(--ink);color:var(--ink)}
+.drop input{display:none}
+.card{border:1px solid var(--hair);padding:20px;margin:0 0 20px}
+.card .head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.card .head b{margin-right:auto;font-weight:500;color:var(--ink)}
+.imgfield{display:flex;gap:16px;align-items:center;margin:0 0 18px}
+.imgfield img{width:120px;height:80px;object-fit:cover;background:#F2F2F2}
+label.btn input[type=file]{display:none}
+pre.log{background:#F6F6F6;padding:16px;white-space:pre-wrap;font-size:12px;max-height:360px;overflow:auto}
+.login{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.login[hidden]{display:none}
+.login form{width:min(360px,90vw)}
+.login .brand{margin-bottom:32px}
+.empty{color:var(--muted);padding:40px 0}
+@media (max-width:860px){
+  .top{flex-wrap:wrap;padding:12px 16px;gap:12px}
+  .status{order:5;width:100%;margin:0}
+  .tabs,.pane{padding-left:16px;padding-right:16px}
+  .split{grid-template-columns:1fr}
+}

@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/landing.css">
 <!-- Флаги разделов (Обучение / Магазин) — до первой отрисовки. -->
+<script src="assets/content.js"></script>
 <script src="assets/config.js"></script>
 </head>
 <body class="landing">
@@ -83,7 +84,7 @@
             <span class="namemark-line"><span>Трояновский</span></span>
           </h1>
           <!-- Посыл — формулировка Вани из голосовой заметки (ТЗ v2 №7). -->
-          <p class="herotag lines d2">Фотографирую любовь людей по всему миру</p>
+          <p class="herotag lines d2" data-c="home.tagline">Фотографирую любовь людей по всему миру</p>
         </div>
       </div>
     </div>
@@ -96,11 +97,11 @@
         <p class="lbl lines">Пролог</p>
       </div>
       <div style="grid-column:4 / span 9">
-        <h2 class="h1 lines">Всё начинается с&nbsp;того, что двое перестают смотреть по&nbsp;сторонам.</h2>
+        <h2 class="h1 lines" data-c="home.prolog">Всё начинается с&nbsp;того, что двое перестают смотреть по&nbsp;сторонам.</h2>
       </div>
     </div>
     <div class="grid" style="margin-top:160px">
-      <div class="mask" style="grid-column:1 / span 12"><div class="inner ph full"><img src="img/s/semya/01.webp" alt="Пожилая пара тянется друг к другу для поцелуя" loading="lazy"></div></div>
+      <div class="mask" style="grid-column:1 / span 12"><div class="inner ph full"><img data-c-src="home.prologImage" src="img/s/semya/01.webp" alt="Пожилая пара тянется друг к другу для поцелуя" loading="lazy"></div></div>
     </div>
   </section>
 
@@ -110,7 +111,7 @@
       <div class="chaside" style="grid-column:1 / span 4">
         <span class="tmask chnum"><span class="rise">I</span></span>
         <p class="lbl lines">Тишина</p>
-        <p class="lead">Я не расставляю людей и не прошу посмотреть в&nbsp;камеру. Первые двадцать минут почти не снимаю — хожу рядом, пока про меня не забывают. Дальше начинается то, ради чего меня позвали.</p>
+        <p class="lead" data-c="home.ch1">Я не расставляю людей и не прошу посмотреть в&nbsp;камеру. Первые двадцать минут почти не снимаю — хожу рядом, пока про меня не забывают. Дальше начинается то, ради чего меня позвали.</p>
       </div>
       <div class="chbody" style="grid-column:6 / span 7">
         <div class="w-full"><div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:1280/853"><img src="img/story/work-floor.webp" alt="Иван снимает девушку, лёжа рядом с ней на полу" loading="lazy"></div></div></div>
@@ -132,7 +133,7 @@
       <div class="chaside" style="grid-column:8 / span 5">
         <span class="tmask chnum"><span class="rise">II</span></span>
         <p class="lbl lines">До</p>
-        <p class="lead">Мне важно, что было до. Как познакомились, кто первый написал, из-за чего чуть не разошлись на втором году. Без этого получаются красивые чужие люди.</p>
+        <p class="lead" data-c="home.ch2">Мне важно, что было до. Как познакомились, кто первый написал, из-за чего чуть не разошлись на втором году. Без этого получаются красивые чужие люди.</p>
       </div>
     </div>
   </section>
@@ -146,14 +147,14 @@
           <p class="lbl lines">Плёнка</p>
         </div>
         <div style="grid-column:5 / span 8">
-          <h2 class="h2 lines">Одна плёнка целиком — без&nbsp;выбора «лучшего».</h2>
-          <p class="lead" style="margin-top:48px">Снимаю на плёнку и на цифру — смотрю по свету и по тому, сколько у нас времени. Плёнку отдаю как есть, одним роликом подряд.</p>
+          <h2 class="h2 lines" data-c="home.ch3Title">Одна плёнка целиком — без&nbsp;выбора «лучшего».</h2>
+          <p class="lead" style="margin-top:48px" data-c="home.ch3">Снимаю на плёнку и на цифру — смотрю по свету и по тому, сколько у нас времени. Плёнку отдаю как есть, одним роликом подряд.</p>
         </div>
       </div>
     </div>
     <div class="roll">
       <div class="roll-pin">
-        <div class="roll-track" aria-label="Плёнка «Дома», кадры подряд">
+        <div class="roll-track" id="rollTrack" aria-label="Плёнка «Дома», кадры подряд">
           <figure class="roll-fr" style="aspect-ratio:2824/3765"><div class="ph"><img src="img/story/negative.webp" alt="Негативы плёнки на просвет" loading="lazy"></div></figure>
           <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/01.webp" alt="Он держит её вниз головой на кровати, оба смеются" loading="lazy"></div></figure>
           <figure class="roll-fr" style="aspect-ratio:3089/2048"><div class="ph"><img src="img/s/doma-na-plyonke/02.webp" alt="Он поднимает её ноги, она смеётся на подушках" loading="lazy"></div></figure>
@@ -171,7 +172,7 @@
           <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/14.webp" alt="Он сидит на кровати, запрокинув голову" loading="lazy"></div></figure>
         </div>
         <div class="roll-foot">
-          <a class="nav" href="syomka.html?s=doma-na-plyonke">Дома, на плёнке · 2024</a>
+          <a class="nav" id="rollLink" href="syomka.html?s=doma-na-plyonke">Дома, на плёнке · 2024</a>
           <span class="roll-bar" aria-hidden="true"><i></i></span>
           <p class="cap roll-count" style="margin:0" aria-hidden="true">01 / 15</p>
         </div>
@@ -187,12 +188,12 @@
         <p class="lbl lines">Как есть</p>
       </div>
       <div style="grid-column:5 / span 8">
-        <h2 class="h2 lines">Нейросети не&nbsp;использую.</h2>
+        <h2 class="h2 lines" data-c="home.ch4Title">Нейросети не&nbsp;использую.</h2>
       </div>
     </div>
     <div class="grid" style="margin-top:96px;align-items:end">
       <div style="grid-column:5 / span 4">
-        <p class="lead">Ни для дорисовки, ни для замены лиц, ни для «улучшения» кадра.</p>
+        <p class="lead" data-c="home.ch4">Ни для дорисовки, ни для замены лиц, ни для «улучшения» кадра.</p>
       </div>
       <div style="grid-column:10 / span 3">
         <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/s/blizko/m/13.webp" alt="Её лицо в движении, смазанный кадр, ч/б" loading="lazy"></div></div>
@@ -208,12 +209,12 @@
         <p class="lbl lines">Свои</p>
       </div>
       <div style="grid-column:5 / span 8">
-        <h2 class="h2 lines">Без студии и&nbsp;команды. С&nbsp;2008 года.</h2>
+        <h2 class="h2 lines" data-c="home.ch5Title">Без студии и&nbsp;команды. С&nbsp;2008 года.</h2>
       </div>
     </div>
     <div class="grid" style="margin-top:128px;align-items:end">
       <div style="grid-column:1 / span 7">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/story/hat.webp" alt="Иван Трояновский, портрет в чёрной шляпе" loading="lazy"></div></div>
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img data-c-src="home.aboutPhoto" src="img/story/hat.webp" alt="Иван Трояновский, портрет в чёрной шляпе" loading="lazy"></div></div>
       </div>
       <div style="grid-column:9 / span 4">
         <div class="mask reveal d1" data-tilt><div class="inner ph" style="aspect-ratio:4/5"><img src="img/story/child.webp" alt="Иван держит ребёнка на руках, ч/б плёнка" loading="lazy"></div></div>
@@ -221,7 +222,7 @@
     </div>
     <div class="grid" style="margin-top:64px">
       <div style="grid-column:5 / span 5">
-        <p class="lead">[О СЕБЕ]</p>
+        <p class="lead" data-c="home.about">[О СЕБЕ]</p>
       </div>
     </div>
   </section>
@@ -265,7 +266,7 @@
         <p class="lbl lines">Эпилог</p>
       </div>
       <div style="grid-column:5 / span 8">
-        <h2 class="h2 lines">Дальше начинается то, ради чего всё и&nbsp;было.</h2>
+        <h2 class="h2 lines" data-c="home.epilog">Дальше начинается то, ради чего всё и&nbsp;было.</h2>
         <div class="quiet" style="margin-top:64px">
           <p class="lines" data-flag="learning"><a class="nav" href="obuchenie.html">Иногда учу снимать — обучение</a></p>
           <p class="lines d1" data-flag="shop"><a class="nav" href="magazin.html">Отпечатки — магазин</a></p>
@@ -286,12 +287,13 @@
     </div>
     <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Связь</p>
-      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+      <a class="nav" href="mailto:[ПОЧТА]" data-c-mail>[ПОЧТА]</a>
     </div>
     <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Смотреть</p>
-      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
-      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener" data-c-href="settings.instagram">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener" data-c-href="settings.vk" data-c-hide>VK</a>
+      <a class="nav" href="#" rel="noopener" data-c-href="settings.telegram" data-c-hide>Telegram</a>
     </div>
     <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
       <p class="lbl">Язык</p>
@@ -314,6 +316,7 @@
 </nav>
 
 <script src="assets/shoots.js"></script>
+<script src="assets/bind.js"></script>
 <script src="assets/photo-tilt.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/works.js"></script>

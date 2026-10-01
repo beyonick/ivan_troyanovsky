@@ -41,6 +41,15 @@ window.SITE_CONFIG = {
   email: "[ПОЧТА]"
 };
 
+/* Настройки из админки (assets/content.js → settings) перекрывают
+   значения выше: контакты, ссылки оплаты, видео, флаги разделов.
+   content.js подключается в <head> раньше этого файла. */
+(function () {
+  var c = window.CONTENT && window.CONTENT.settings;
+  if (!c) return;
+  for (var k in c) if (Object.prototype.hasOwnProperty.call(c, k)) window.SITE_CONFIG[k] = c[k];
+})();
+
 /* Флаги разделов — до первой отрисовки. Выключенный раздел получает класс
    на <html> (.off-shop / .off-learning), CSS прячет всё с data-flag этого
    раздела. Страница самого раздела (<html data-section="shop">) при

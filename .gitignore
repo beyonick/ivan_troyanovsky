@@ -2,3 +2,6 @@
 Thumbs.db
 node_modules/
 .vercel/
+
+# Копии контента перед каждым сохранением из админки
+admin/backups/

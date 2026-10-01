@@ -11,7 +11,8 @@
              сдвигом — при каждом заходе одна и та же картина. */
 (function () {
   'use strict';
-  var data = window.SHOOTS || [];
+  // Скрытые в админке съёмки на сайт не выходят.
+  var data = (window.SHOOTS || []).filter(function (s) { return !s.hidden; });
   var root = document.getElementById('worksView');
   var section = document.getElementById('raboty');
   if (!root || !section || !data.length) return;
