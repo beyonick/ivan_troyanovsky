@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Иван Трояновский — фотограф</title>
-<meta name="description" content="Фотографирую любовь людей по всему миру: пары, семьи с детьми. Снимаю с 2008 года.">
+<meta name="description" content="Фотографирую любовь людей по всему миру: пары, семьи с детьми. Снимаю с 2008 года, на плёнку и на цифру.">
 <meta property="og:title" content="Иван Трояновский — фотограф">
 <meta property="og:description" content="Фотографирую любовь людей по всему миру.">
 <meta property="og:image" content="img/hero-poster.jpg">
@@ -18,27 +18,27 @@
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/photo-tilt.css">
 <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/landing.css">
 <!-- Флаги разделов (Обучение / Магазин) — до первой отрисовки. -->
 <script src="assets/config.js"></script>
 </head>
-<body>
+<body class="landing">
 
 <!--
-  Главная v2 — «золотая середина» (TZ-minimalism-v2.md). Сайт — портфолио:
-  герой на весь экран → десять кадров → истории → кто я → футер с контактами.
-  Убрано с главной (лежит в legacy/index-v1.html): действия под героем,
-  акты I–IV, манифест, «Плёнка», счётчики, цитаты пар, тёмный мастер-класс
-  (переехал на obuchenie.html), блок заявки. Заявка целиком — в legacy/.
+  Главная — история о Ване как о фотохудожнике, без продажи: читается как
+  каталог выставки. Пролог → I Тишина (как работает) → II До (люди) →
+  III Плёнка (материал) → IV Как есть (честность кадра) → V Свои (он сам) →
+  VI Съёмки (портфолио: Сетка / Список / Галерея) → Эпилог.
+  Тексты глав — из утверждённых формулировок прежней главной
+  (legacy/index-v1.html: манифест, акты, «Плёнка»), тон §9. Текст «о себе»
+  Ваня пишет сам — [О СЕБЕ]. Продажи — две тихие строки в эпилоге.
 -->
 
-<!-- Прелоадер — § 8, без изменений. Та же раскладка, что у .heroname:
-     блок имени по центру экрана, строки по левому краю. Подпись под именем
-     есть только на герое и стоит абсолютно — имя на прелоадере и на видео
-     совпадает 1:1. -->
+<!-- Прелоадер — § 8, без изменений; совпадает с именем на герое 1:1. -->
 <div class="preload" id="preload">
   <div class="wrap" style="width:100%">
     <div class="heroname-inner">
-      <p class="namemark" aria-label="Иван Трояновский">
+      <p class="namemark" aria-hidden="true">
         <span class="namemark-line"><span>Иван</span></span>
         <span class="namemark-line"><span>Трояновский</span></span>
       </p>
@@ -57,7 +57,7 @@
   </a>
   <!-- Три пункта и язык — больше не добавлять (ТЗ v2 §3). -->
   <nav class="navmenu" id="navmenu">
-    <a class="nav" href="/" aria-current="page">Портфолио</a>
+    <a class="nav" href="#raboty" aria-current="page">Портфолио</a>
     <a class="nav" href="obuchenie.html" data-flag="learning">Обучение</a>
     <a class="nav" href="magazin.html" data-flag="shop">Магазин</a>
     <a class="nav" href="/en/">RU / EN</a>
@@ -78,127 +78,198 @@
     <div class="heroname" id="heroname">
       <div class="wrap" style="width:100%">
         <div class="heroname-inner">
-          <p class="namemark" aria-label="Иван Трояновский">
+          <h1 class="namemark" aria-label="Иван Трояновский">
             <span class="namemark-line"><span>Иван</span></span>
             <span class="namemark-line"><span>Трояновский</span></span>
-          </p>
-          <!-- Посыл — формулировка Вани из голосовой заметки (ТЗ v2 №7).
-               Варианты ему на выбор — в отчёте, финальную выбирает он. -->
+          </h1>
+          <!-- Посыл — формулировка Вани из голосовой заметки (ТЗ v2 №7). -->
           <p class="herotag lines d2">Фотографирую любовь людей по всему миру</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Портфолио: десять кадров, не вся галерея (ТЗ v2 §4.1). Каждый кадр
-       в своём ряду (§5), ширина 4–12 колонок, начало не с первой. Ряд .up
-       подтянут вверх к соседу с другой стороны сетки — кадры заходят друг
-       за друга по вертикали, но в один ряд не встают. Кадр во весь экран —
-       без маски и без наклона (§7.8-бис). Выбор провизорный: из папки
-       «Избранные» + два горизонтальных с прежней главной; финальные 8–12
-       выбирает Ваня. -->
-  <section class="wrap pfstart" id="portfolio" aria-label="Портфолио">
-
-    <div class="grid pf">
-      <div style="grid-column:1 / span 8">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/p01.jpg" alt="Поцелуй крупно, у него очки и татуировки на лице" loading="lazy"></div></div>
+  <!-- Пролог. Кадр во весь экран — без маски и наклона (§7.8-бис). -->
+  <section class="wrap" id="prolog" style="margin-top:192px">
+    <div class="grid">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Пролог</p>
       </div>
-    </div>
-
-    <div class="grid pf up">
-      <div class="fv r" style="grid-column:9 / span 4">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/p02.jpg" alt="Двое целуются посреди ночной улицы под фонарями" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf">
-      <div class="mask" style="grid-column:1 / span 12"><div class="inner ph full"><img src="img/p03.jpg" alt="Пожилая пара тянется друг к другу для поцелуя" loading="lazy"></div></div>
-    </div>
-
-    <div class="grid pf">
-      <div class="fv" style="grid-column:2 / span 4">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/p04.jpg" alt="Двое на крыше жёлтой машины ночью, Петербург" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf up up-l">
-      <div style="grid-column:7 / span 6">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/p05.jpg" alt="Объятие и поцелуй в постели, чёрно-белый кадр" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf">
-      <div style="grid-column:1 / span 6">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/w02.jpg" alt="Он целует её в лоб, зима, красная шапка" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf up">
-      <div class="fv r" style="grid-column:8 / span 4">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/p06.jpg" alt="Поцелуй в синем и красном свете" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf">
-      <div class="fv" style="grid-column:3 / span 5">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/p09.jpg" alt="Двое обнимаются на капоте старой машины под грозовым небом" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf up up-l">
-      <div class="fv r" style="grid-column:9 / span 4">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/p08.jpg" alt="Двое в открытом окне: он внизу на подоконнике, она над ним на раме" loading="lazy"></div></div>
-      </div>
-    </div>
-
-    <div class="grid pf">
       <div style="grid-column:4 / span 9">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/w01.jpg" alt="Двое бегут по ночной заснеженной улице в жёлтом свете" loading="lazy"></div></div>
+        <h2 class="h1 lines">Всё начинается с&nbsp;того, что двое перестают смотреть по&nbsp;сторонам.</h2>
       </div>
     </div>
-
+    <div class="grid" style="margin-top:160px">
+      <div class="mask" style="grid-column:1 / span 12"><div class="inner ph full"><img src="img/s/semya/01.webp" alt="Пожилая пара тянется друг к другу для поцелуя" loading="lazy"></div></div>
+    </div>
   </section>
 
-  <!-- Истории — подача съёмок по mersi-architecture.com/projets: обложка и
-       под ней одна строка, имя слева, город и год справа. Только готовые
-       истории; счётчика «568» и «Показать все» нет (ТЗ v2 §4.1). Фильтры
-       по стадиям вернуть, когда историй станет больше трёх. -->
-  <section class="sec wrap" id="istorii">
-    <div class="grid">
-      <div style="grid-column:1 / span 3">
-        <p class="lbl lines">Истории</p>
+  <!-- I. Тишина — как он работает. Текст стоит (sticky), кадры идут мимо. -->
+  <section class="sec wrap" id="tishina">
+    <div class="grid chapter">
+      <div class="chaside" style="grid-column:1 / span 4">
+        <span class="tmask chnum"><span class="rise">I</span></span>
+        <p class="lbl lines">Тишина</p>
+        <p class="lead">Я не расставляю людей и не прошу посмотреть в&nbsp;камеру. Первые двадцать минут почти не снимаю — хожу рядом, пока про меня не забывают. Дальше начинается то, ради чего меня позвали.</p>
       </div>
-      <div style="grid-column:5 / span 8">
-        <a class="storyitem" href="story-zhenya-nikita.html">
-          <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/zn-cover-lg.jpg" alt="Женя и Никита на набережной, Петербург" loading="lazy"></div></div>
-          <span class="sline">
-            <span class="sname">Женя и Никита</span>
-            <span class="cap" style="margin:0">Петербург · <time datetime="2021">2021</time></span>
-          </span>
-        </a>
+      <div class="chbody" style="grid-column:6 / span 7">
+        <div class="w-full"><div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:1280/853"><img src="img/story/work-floor.webp" alt="Иван снимает девушку, лёжа рядом с ней на полу" loading="lazy"></div></div></div>
+        <div class="w-half to-r"><div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/story/camera.webp" alt="Иван сидит на мостовой с камерой у лица" loading="lazy"></div></div></div>
+        <div class="w-wide"><div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2250/1496"><img src="img/story/work-bed.webp" alt="Иван снимает пару, обнявшуюся на кровати у окна" loading="lazy"></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Кто я (ТЗ v2 §4.1): фото, чтобы было видно, кто это, и посыл.
-       Текст «о себе» Ваня пишет сам — плейсхолдер, не выдумываем (§13).
-       Мастер-класс на главной — одна тихая ссылка, не секция. -->
-  <section class="sec wrap" id="obo-mne">
+  <!-- II. До — люди и то, что было до съёмки. Зеркально: кадры слева. -->
+  <section class="sec wrap" id="do">
+    <div class="grid chapter">
+      <div class="chbody" style="grid-column:1 / span 6">
+        <div class="things">
+          <div class="thing" style="--rot:-2deg"><div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:1299/2160"><img src="img/story/booth.webp" alt="Фотополоска из будки: двое дурачатся и целуются" loading="lazy"></div></div></div>
+          <div class="thing" style="--rot:4deg"><div class="mask reveal d1" data-tilt><div class="inner ph" style="aspect-ratio:1040/1264"><img src="img/story/polaroid.webp" alt="Полароид: двое на подоконнике у открытого окна" loading="lazy"></div></div></div>
+        </div>
+      </div>
+      <div class="chaside" style="grid-column:8 / span 5">
+        <span class="tmask chnum"><span class="rise">II</span></span>
+        <p class="lbl lines">До</p>
+        <p class="lead">Мне важно, что было до. Как познакомились, кто первый написал, из-за чего чуть не разошлись на втором году. Без этого получаются красивые чужие люди.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- III. Плёнка — один ролик целиком, лентой (roll.js). -->
+  <section class="sec" id="plyonka">
+    <div class="wrap">
+      <div class="grid">
+        <div style="grid-column:1 / span 4">
+          <span class="tmask chnum"><span class="rise">III</span></span>
+          <p class="lbl lines">Плёнка</p>
+        </div>
+        <div style="grid-column:5 / span 8">
+          <h2 class="h2 lines">Одна плёнка целиком — без&nbsp;выбора «лучшего».</h2>
+          <p class="lead" style="margin-top:48px">Снимаю на плёнку и на цифру — смотрю по свету и по тому, сколько у нас времени. Плёнку отдаю как есть, одним роликом подряд.</p>
+        </div>
+      </div>
+    </div>
+    <div class="roll">
+      <div class="roll-pin">
+        <div class="roll-track" aria-label="Плёнка «Дома», кадры подряд">
+          <figure class="roll-fr" style="aspect-ratio:2824/3765"><div class="ph"><img src="img/story/negative.webp" alt="Негативы плёнки на просвет" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/01.webp" alt="Он держит её вниз головой на кровати, оба смеются" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:3089/2048"><div class="ph"><img src="img/s/doma-na-plyonke/02.webp" alt="Он поднимает её ноги, она смеётся на подушках" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/03.webp" alt="Двое возятся на смятой постели" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/04.webp" alt="Она забралась на него у стены с рисунком" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/05.webp" alt="Она стоит на кровати, он держит её" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/06.webp" alt="Он склонился над ней на кровати" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:3089/2048"><div class="ph"><img src="img/s/doma-na-plyonke/07.webp" alt="Он тянет её за ноги по кровати" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2048/3089"><div class="ph"><img src="img/s/doma-na-plyonke/08.webp" alt="Он держит её за щиколотки, она лежит на животе" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/09.webp" alt="Поцелуй сквозь белую занавесь" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/10.webp" alt="Он на коленях на кровати, она стоит рядом" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/11.webp" alt="Он перекинул её через плечо" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/12.webp" alt="Он держит её вниз головой" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/13.webp" alt="Она висит у него на плечах" loading="lazy"></div></figure>
+          <figure class="roll-fr" style="aspect-ratio:2433/3637"><div class="ph"><img src="img/s/doma-na-plyonke/14.webp" alt="Он сидит на кровати, запрокинув голову" loading="lazy"></div></figure>
+        </div>
+        <div class="roll-foot">
+          <a class="nav" href="syomka.html?s=doma-na-plyonke">Дома, на плёнке · 2024</a>
+          <span class="roll-bar" aria-hidden="true"><i></i></span>
+          <p class="cap roll-count" style="margin:0" aria-hidden="true">01 / 15</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV. Как есть — одна фраза и один несовершенный кадр. -->
+  <section class="sec wrap asis" id="kak-est">
     <div class="grid">
-      <div style="grid-column:1 / span 3">
-        <p class="lbl lines">Обо мне</p>
+      <div style="grid-column:1 / span 4">
+        <span class="tmask chnum"><span class="rise">IV</span></span>
+        <p class="lbl lines">Как есть</p>
       </div>
       <div style="grid-column:5 / span 8">
-        <h2 class="h2 lines">Пары и семьи с&nbsp;детьми, с&nbsp;2008 года.</h2>
+        <h2 class="h2 lines">Нейросети не&nbsp;использую.</h2>
       </div>
     </div>
     <div class="grid" style="margin-top:96px;align-items:end">
-      <div style="grid-column:1 / span 5">
-        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/van-about.jpg" alt="Иван Трояновский, портрет в чёрной шляпе" loading="lazy"></div></div>
+      <div style="grid-column:5 / span 4">
+        <p class="lead">Ни для дорисовки, ни для замены лиц, ни для «улучшения» кадра.</p>
       </div>
-      <div style="grid-column:7 / span 5">
+      <div style="grid-column:10 / span 3">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:2/3"><img src="img/s/blizko/m/13.webp" alt="Её лицо в движении, смазанный кадр, ч/б" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V. Свои — он сам. Текст «о себе» — от Вани (§13). -->
+  <section class="sec wrap" id="svoi">
+    <div class="grid">
+      <div style="grid-column:1 / span 4">
+        <span class="tmask chnum"><span class="rise">V</span></span>
+        <p class="lbl lines">Свои</p>
+      </div>
+      <div style="grid-column:5 / span 8">
+        <h2 class="h2 lines">Без студии и&nbsp;команды. С&nbsp;2008 года.</h2>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:128px;align-items:end">
+      <div style="grid-column:1 / span 7">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/story/hat.webp" alt="Иван Трояновский, портрет в чёрной шляпе" loading="lazy"></div></div>
+      </div>
+      <div style="grid-column:9 / span 4">
+        <div class="mask reveal d1" data-tilt><div class="inner ph" style="aspect-ratio:4/5"><img src="img/story/child.webp" alt="Иван держит ребёнка на руках, ч/б плёнка" loading="lazy"></div></div>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:64px">
+      <div style="grid-column:5 / span 5">
         <p class="lead">[О СЕБЕ]</p>
-        <p class="lines d1" style="margin-top:48px" data-flag="learning"><a class="nav" href="obuchenie.html">Иногда учу снимать — обучение</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VI. Съёмки — портфолио в трёх видах (works.js, kononenkogroup.com/work). -->
+  <section class="sec" id="raboty">
+    <div class="wrap works-head">
+      <div class="grid">
+        <div style="grid-column:1 / span 4">
+          <span class="tmask chnum"><span class="rise">VI</span></span>
+          <p class="lbl lines">Портфолио</p>
+        </div>
+        <div style="grid-column:5 / span 8">
+          <h2 class="h2 lines">Съёмки</h2>
+          <p class="cap" id="worksCount">11 съёмок · 80 кадров</p>
+        </div>
+      </div>
+    </div>
+    <div class="works-view" id="worksView" data-view="grid"></div>
+    <noscript>
+      <div class="wrap" style="margin-top:64px">
+        <p><a class="nav" href="story-zhenya-nikita.html">Женя и Никита</a></p>
+        <p><a class="nav" href="syomka.html?s=noch">Ночной город</a></p>
+        <p><a class="nav" href="syomka.html?s=doma-na-plyonke">Дома, на плёнке</a></p>
+        <p><a class="nav" href="syomka.html?s=zima">Зима на Неве</a></p>
+        <p><a class="nav" href="syomka.html?s=semya">Семья</a></p>
+        <p><a class="nav" href="syomka.html?s=blizko">Близко</a></p>
+        <p><a class="nav" href="syomka.html?s=parizh">Париж</a></p>
+        <p><a class="nav" href="syomka.html?s=gitara">Гитара</a></p>
+        <p><a class="nav" href="syomka.html?s=gorod">Город</a></p>
+        <p><a class="nav" href="syomka.html?s=kvartira">Квартира, ч/б</a></p>
+        <p><a class="nav" href="syomka.html?s=tsvety">Цветы</a></p>
+      </div>
+    </noscript>
+  </section>
+
+  <!-- Эпилог. Обучение и магазин — по одной тихой строке (ТЗ v2 §4.1). -->
+  <section class="sec wrap" id="epilog">
+    <div class="grid">
+      <div style="grid-column:1 / span 4">
+        <p class="lbl lines">Эпилог</p>
+      </div>
+      <div style="grid-column:5 / span 8">
+        <h2 class="h2 lines">Дальше начинается то, ради чего всё и&nbsp;было.</h2>
+        <div class="quiet" style="margin-top:64px">
+          <p class="lines" data-flag="learning"><a class="nav" href="obuchenie.html">Иногда учу снимать — обучение</a></p>
+          <p class="lines d1" data-flag="shop"><a class="nav" href="magazin.html">Отпечатки — магазин</a></p>
+        </div>
       </div>
     </div>
   </section>
@@ -206,8 +277,7 @@
   <div style="height:192px"></div>
 </main>
 
-<!-- Футер обнажается, а не появляется (§ 7.5). Связь — только здесь,
-     без формы: почта, Instagram, VK (ТЗ v2 §4.1). -->
+<!-- Футер обнажается, а не появляется (§ 7.5). Связь — только здесь. -->
 <div class="footshell"></div>
 <footer class="foot">
   <div class="footgrid">
@@ -236,14 +306,17 @@
   </div>
 </footer>
 
-<!-- Сетка по кнопке — служебный оверлей для вёрстки, не часть дизайна. -->
-<button class="gridtoggle" type="button" id="gridtoggle" aria-pressed="false">Сетка</button>
-<div class="gridoverlay" id="gridoverlay" aria-hidden="true">
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-  <span></span><span></span><span></span><span></span><span></span><span></span>
-</div>
+<!-- Вид портфолио — виден, пока «Съёмки» на экране. -->
+<nav class="viewswitch" id="viewswitch" aria-label="Вид портфолио">
+  <button type="button" data-view="grid" aria-pressed="true">Сетка</button>
+  <button type="button" data-view="list" aria-pressed="false">Список</button>
+  <button type="button" data-view="gallery" aria-pressed="false">Галерея</button>
+</nav>
 
+<script src="assets/shoots.js"></script>
 <script src="assets/photo-tilt.js"></script>
 <script src="assets/site.js"></script>
+<script src="assets/works.js"></script>
+<script src="assets/roll.js"></script>
 </body>
 </html>

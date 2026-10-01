@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Съёмка — Иван Трояновский</title>
+<meta name="description" content="Съёмка Ивана Трояновского.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;1,300&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/photo-tilt.css">
+<link rel="stylesheet" href="assets/story.css">
+<script src="assets/config.js"></script>
+</head>
+
+<!--
+  Шаблон страницы съёмки: syomka.html?s=<slug>. Лента — та же, что у
+  истории Жени и Никиты (story.css + story.js, референс
+  mersi-architecture.com/projets): все кадры одной высоты, вертикальный
+  скролл ведёт ленту вбок. Разметку ленты собирает shoot.js из shoots.js.
+  Расхождения с DESIGN.md — те же, что названы в story-zhenya-nikita.html.
+-->
+
+<body class="story">
+
+<header class="navbar solid">
+  <a class="logo" href="/" aria-label="Иван Трояновский">
+    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16.4 26.6 C 9.7 21.7, 3.1 17.3, 4.1 11.1 C 4.8 6.9, 9.7 5.2, 13.2 8.2 C 14.4 9.3, 15.3 10.8, 15.9 12.1 C 16.6 10.5, 17.8 8.7, 19.4 7.6 C 23.2 5, 27.7 7.3, 27.4 11.9 C 27, 18.2, 20.5 22, 16.4 26.6 Z"/>
+      <path d="M3 23 L 26 5"/>
+      <path d="M26 5 L 21.1 6 M26 5 L 25.1 10.7"/>
+      <path d="M3 23 L 6.7 22 M3 23 L 5 26.2"/>
+    </svg>
+  </a>
+  <nav class="navmenu" id="navmenu">
+    <a class="nav" href="/#raboty">Портфолио</a>
+    <a class="nav" href="obuchenie.html" data-flag="learning">Обучение</a>
+    <a class="nav" href="magazin.html" data-flag="shop">Магазин</a>
+    <a class="nav" href="/en/">RU / EN</a>
+  </nav>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+<article class="hscroll" id="hscroll">
+  <div class="hpin" id="hpin">
+    <div class="htrack" id="htrack"></div>
+  </div>
+</article>
+</main>
+
+<div class="hbar" aria-hidden="true"><i></i></div>
+<p class="cap hcount" id="hcount" aria-hidden="true"></p>
+
+<script src="assets/shoots.js"></script>
+<script src="assets/shoot.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/photo-tilt.js"></script>
+<script src="assets/story.js"></script>
+</body>
+</html>
