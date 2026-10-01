@@ -12,7 +12,7 @@ window.CONTENT = {
   "telegram": "",
   "lessonCheckout": "",
   "printOrder": "",
-  "heroVideo": "https://378927d7-40c7-486c-a37f-a3b5c4f454a6.selstorage.ru/kak%20!!!!!!!!!!!!-SE_3.webm",
+  "heroVideo": "",
   "heroVideoMp4": "",
   "heroPoster": "img/hero-poster.jpg"
  },
