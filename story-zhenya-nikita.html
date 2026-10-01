@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <link rel="stylesheet" href="assets/photo-tilt.css">
 <link rel="stylesheet" href="assets/story.css">
+<script src="assets/config.js"></script>
 </head>
 
 <!--
@@ -85,10 +86,9 @@
     </svg>
   </a>
   <nav class="navmenu" id="navmenu">
-    <a class="nav" href="/#istorii">Истории</a>
-    <a class="nav" href="/#masterclass">Мастер-класс</a>
-    <a class="nav" href="/#napisat">Написать</a>
-    <a class="nav" href="/#manifest">Обо мне</a>
+    <a class="nav" href="/">Портфолио</a>
+    <a class="nav" href="obuchenie.html" data-flag="learning">Обучение</a>
+    <a class="nav" href="magazin.html" data-flag="shop">Магазин</a>
     <a class="nav" href="/en/">RU / EN</a>
   </nav>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
@@ -194,7 +194,9 @@
         <div class="mask reveal"><div class="inner ph"><img src="img/zn/zn-20.webp" alt="Женя смеётся, Никита за плечом, ночная набережная" loading="lazy" width="1500" height="1000"></div></div>
       </figure>
 
-      <!-- Конец ленты: заявка. Блок 16:9 ростом с кадр, как ещё одна
+      <!-- v2 (ТЗ-minimalism-v2): заявки на сайте нет (legacy/zayavka.html) —
+           карточка ведёт обратно в портфолио, связь — почта и Instagram.
+           Конец ленты: прежде заявка. Блок 16:9 ростом с кадр, как ещё одна
            горизонтальная фотография в ряду, только белая и в рамке
            (взамен чёрной панели контактов, 2026-09-05).
            Фото — IMG_0379, чуть под углом, как памятная карточка сбоку
@@ -211,14 +213,14 @@
             <div class="mask reveal"><div class="inner ph"><img src="img/zn/zn-cta.webp" alt="Пара на подоконнике в объятиях, силуэтом на утреннем свету" loading="lazy" width="741" height="900"></div></div>
           </div>
           <div class="ectext">
-            <a class="heroaction reveal d1" href="zayavka.html">
-              <p class="lbl">Съёмка</p>
-              <p class="h3" style="margin-top:16px">Записаться на съёмку</p>
+            <a class="heroaction reveal d1" href="/">
+              <p class="lbl">Дальше</p>
+              <p class="h3" style="margin-top:16px">Портфолио</p>
             </a>
-            <p class="lead" style="margin-top:24px">Беру не больше двух съёмок в неделю и снимаю по всему миру. Напишите — отвечу сам и скажу, свободна ли ваша дата.</p>
+            <p class="lead" style="margin-top:24px">Снимаю пары и семьи с&nbsp;детьми по всему миру. Написать можно на почту или в&nbsp;Instagram.</p>
             <div class="ecsec reveal d3">
-              <a href="/#istorii">Все истории</a>
-              <a href="/">На главную</a>
+              <a href="mailto:[ПОЧТА]">Почта</a>
+              <a href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
             </div>
           </div>
         </div>
@@ -233,7 +235,6 @@
 <p class="cap hcount" id="hcount" aria-hidden="true">01 / 20</p>
 
 
-<script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
 <script src="assets/photo-tilt.js"></script>
 <script src="assets/story.js"></script>

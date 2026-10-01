@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Иван Трояновский — фотограф</title>
+<meta name="description" content="Инди-фотограф. Снимаю любовь с 2008 года: love story, свадьбы, семьи. По всему миру.">
+<meta property="og:title" content="Иван Трояновский — фотограф">
+<meta property="og:description" content="Снимаю любовь с 2008 года: как встречаются, как решаются, как остаются вместе.">
+<meta property="og:image" content="img/hero-poster.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Хранилище видео героя: ранний коннект, чтобы буфер пошёл сразу (см. config.js). -->
+<link rel="preconnect" href="https://378927d7-40c7-486c-a37f-a3b5c4f454a6.selstorage.ru" crossorigin>
+<link rel="preload" as="image" href="img/hero-poster.jpg" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;1,300&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/photo-tilt.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<!-- Прелоадер — § 8. Только имя антиквой в две строки; входит и уходит маской
+     (§ 7.1). Держит первый экран, пока грузится видео героя; один раз за сессию.
+     Логика — bindPreload() в site.js, снимается по canplay + минимальному
+     времени, с жёстким потолком ожидания. -->
+<div class="preload" id="preload">
+  <!-- Та же раскладка, что и у .heroname: .wrap → .grid → .heroname-inner,
+       якорь в 3-ю колонку, span 8. Имя на прелоадере встаёт ровно там же,
+       где имя на видео героя, и совпадает с ним 1:1. -->
+  <div class="wrap" style="width:100%">
+    <div class="grid">
+      <div class="heroname-inner" style="grid-column:3 / span 8">
+        <p class="namemark" aria-label="Иван Трояновский">
+          <span class="namemark-line"><span>Иван</span></span>
+          <span class="namemark-line"><span>Трояновский</span></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="navbar">
+  <a class="logo" href="/" aria-label="Иван Трояновский">
+    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16.4 26.6 C 9.7 21.7, 3.1 17.3, 4.1 11.1 C 4.8 6.9, 9.7 5.2, 13.2 8.2 C 14.4 9.3, 15.3 10.8, 15.9 12.1 C 16.6 10.5, 17.8 8.7, 19.4 7.6 C 23.2 5, 27.7 7.3, 27.4 11.9 C 27, 18.2, 20.5 22, 16.4 26.6 Z"/>
+      <path d="M3 23 L 26 5"/>
+      <path d="M26 5 L 21.1 6 M26 5 L 25.1 10.7"/>
+      <path d="M3 23 L 6.7 22 M3 23 L 5 26.2"/>
+    </svg>
+  </a>
+  <nav class="navmenu" id="navmenu">
+    <a class="nav" href="#istorii">Истории</a>
+    <a class="nav" href="#masterclass">Мастер-класс</a>
+    <a class="nav" href="#napisat">Написать</a>
+    <a class="nav" href="#manifest">Обо мне</a>
+    <a class="nav" href="/en/">RU / EN</a>
+  </nav>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+  <!-- Герой — единственное место, где кадр касается края экрана (DESIGN.md § 5). -->
+  <section class="hero">
+    <div class="herovideo mask">
+      <video autoplay muted loop playsinline preload="auto" fetchpriority="high" poster="img/hero-poster.jpg"
+             aria-label="Пара на видео, снятом Иваном Трояновским"></video>
+    </div>
+    <div class="heroname" id="heroname">
+      <div class="wrap" style="width:100%">
+        <div class="grid">
+          <!-- 8 колонок, а не 7: Cormorant Infant шире прежней антиквы,
+               в семи «Трояновский» не помещался и вылезал за колонку. -->
+          <div class="heroname-inner" style="grid-column:3 / span 8">
+            <p class="namemark" aria-label="Иван Трояновский">
+              <span class="namemark-line"><span>Иван</span></span>
+              <span class="namemark-line"><span>Трояновский</span></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:64px;padding-bottom:64px">
+    <div class="grid" style="align-items:baseline">
+      <div style="grid-column:1 / span 5">
+        <a class="heroaction" href="zayavka.html">
+          <p class="lbl lines">Съёмка</p>
+          <p class="h3 lines d1" style="margin-top:16px">Записаться</p>
+        </a>
+      </div>
+      <div style="grid-column:7 / span 5">
+        <a class="heroaction" href="#masterclass">
+          <p class="lbl lines d1">Обучение</p>
+          <p class="h3 lines d2" style="margin-top:16px">Мастер-класс</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="istorii">
+    <!-- Фильтры стоят по левому краю таблицы, в той же правой половине
+         сетки (было — слева, в 5-й колонке, на отдельной строке выше). -->
+    <div class="grid" style="margin-bottom:40px;align-items:baseline">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Истории</p>
+        <p class="lines d1" style="margin:16px 0 0"><a class="nav" href="#istorii">Показать все · 568</a></p>
+      </div>
+      <!-- Фильтры занимают ту же правую половину, что и таблица: на среднем
+           экране в четыре колонки они переносились в две строки. Маска здесь
+           на самом ряду (.reveal), а не на каждой ссылке: .lines внутри флекса
+           съел бы gap между фильтрами. -->
+      <div style="grid-column:7 / span 6">
+        <div class="stages reveal d1">
+          <a class="stage on" href="#istorii">Все</a>
+          <a class="stage" href="#istorii">Первый взгляд</a>
+          <a class="stage" href="#istorii">Сближение</a>
+          <a class="stage" href="#istorii">Свадьба</a>
+          <a class="stage" href="#istorii">Семья</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Таблица историй — в правой половине сетки, не на все 12 колонок. -->
+    <div class="grid">
+    <div style="grid-column:7 / span 6">
+    <div class="bigindex reveal">
+      <a class="brow" href="#istorii">
+        <span class="bname">Аня и Кирилл</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Сближение</span><span class="cap" style="margin:0">Петербург</span><time class="cap" style="margin:0" datetime="2024">2024</time></span>
+      </a>
+      <a class="brow" href="#istorii">
+        <span class="bname">Марина и Тимур</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Свадьба</span><span class="cap" style="margin:0">Москва</span><time class="cap" style="margin:0" datetime="2023">2023</time></span>
+      </a>
+      <a class="brow" href="story-zhenya-nikita.html">
+        <span class="bname">Женя и Никита</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Первый взгляд</span><span class="cap" style="margin:0">Петербург</span><time class="cap" style="margin:0" datetime="2022">2022</time></span>
+      </a>
+      <a class="brow" href="#istorii">
+        <span class="bname">Лиза и Пётр</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Свадьба</span><span class="cap" style="margin:0">Петербург</span><time class="cap" style="margin:0" datetime="2022">2022</time></span>
+      </a>
+      <a class="brow" href="#istorii">
+        <span class="bname">Nina &amp; Michael</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Семья</span><span class="cap" style="margin:0">Нью-Йорк</span><time class="cap" style="margin:0" datetime="2024">2024</time></span>
+      </a>
+      <a class="brow" href="#istorii">
+        <span class="bname">Оля и Стас</span>
+        <span class="bmeta"><span class="cap" style="margin:0">Сближение</span><span class="cap" style="margin:0">Москва</span><time class="cap" style="margin:0" datetime="2025">2025</time></span>
+      </a>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/v13.jpg" alt="Аня и Кирилл обнимаются на ступенях у воды, Петербург" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/q07.jpg" alt="Марина и Тимур бегут по набережной, Москва" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/v06.jpg" alt="Ночная улица с жёлтым такси, Петербург" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/q09.jpg" alt="Лиза и Пётр в светлой комнате с развевающейся простынёй, Петербург" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/q08.jpg" alt="Карусель в движении, Нью-Йорк" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/w02.jpg" alt="Оля и Стас целуются зимой в вязаных шапках, Москва" loading="lazy"></div></div>
+    </div>
+    </div>
+    </div>
+    <div style="height:64px"></div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="grid">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Акт I</p>
+        <p class="lbl lines d1" style="color:var(--ink);margin-top:8px">Первый взгляд</p>
+      </div>
+      <div style="grid-column:5 / span 7">
+        <h2 class="h2 lines">Всё начинается с того, что двое перестают смотреть по сторонам.</h2>
+      </div>
+    </div>
+    <!-- Один кадр вместо двух в ряд: горизонтальный, на половину экрана. -->
+    <div class="grid" style="margin-top:128px">
+      <div style="grid-column:1 / span 6">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/q02.jpg" alt="Двое на гранитных ступенях у воды, Петербург" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="manifest">
+    <div class="grid">
+      <div style="grid-column:1 / span 2"><p class="lbl lines">Манифест</p></div>
+      <!-- Базовая проза (.lead/.txt) не анимируется — появляется статично,
+           без маски (DESIGN.md §7.1, карвинг-аут 2026-09-07 по прямой просьбе).
+           Класс .lines здесь намеренно не ставится. -->
+      <div style="grid-column:4 / span 7;display:flex;flex-direction:column;gap:48px">
+        <p class="lead">Я не расставляю людей и не прошу посмотреть в камеру. Первые двадцать минут почти не снимаю — хожу рядом, пока про меня не забывают. Дальше начинается то, ради чего меня позвали.</p>
+        <p class="lead">Мне важно, что было до. Как познакомились, кто первый написал, из-за чего чуть не разошлись на втором году. Без этого получаются красивые чужие люди.</p>
+        <p class="lead">Снимаю на плёнку и на цифру — смотрю по свету и по тому, сколько у нас времени. Плёнку отдаю как есть, одним роликом подряд. Нейросети не использую: ни для дорисовки, ни для замены лиц, ни для «улучшения» кадра.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="grid" style="margin-bottom:64px">
+      <div style="grid-column:1 / span 3"><p class="lbl lines">Плёнка</p></div>
+      <div style="grid-column:5 / span 7"><h2 class="h2 lines">Одна плёнка целиком — без выбора «лучшего».</h2></div>
+    </div>
+    <!-- Все три кадра горизонтальные, ровным рядом. -->
+    <div class="grid" style="align-items:start">
+      <div style="grid-column:1 / span 4">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/lf03.jpg" alt="Подушечный бой в постели" loading="lazy"></div></div>
+      </div>
+      <div style="grid-column:5 / span 4">
+        <div class="mask reveal d1" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/lf01.jpg" alt="Силуэт поцелуя сквозь занавесь" loading="lazy"></div></div>
+      </div>
+      <div style="grid-column:9 / span 4">
+        <div class="mask reveal d2" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/lf02.jpg" alt="Он поднимает её на руки, оба смеются" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="grid" style="margin-bottom:96px">
+        <div style="grid-column:1 / span 3">
+          <p class="lbl lines">Акт II</p>
+          <p class="lbl lines d1" style="color:var(--ink);margin-top:8px">Сближение</p>
+        </div>
+        <div style="grid-column:5 / span 7">
+          <h2 class="h2 lines">Между первым свиданием и решением проходит год, два, иногда десять.</h2>
+        </div>
+      </div>
+      <!-- Кадр во весь экран: ни раскрытия маской, ни наклона за курсором
+           (§7.8-бис). Явно на сетке — grid-column:1/span12, не просто
+           «широкий div» мимо 12 колонок. -->
+      <div class="grid">
+        <div class="mask" style="grid-column:1 / span 12"><div class="inner ph" style="height:88vh;min-height:420px"><img src="img/w03.jpg" alt="Марина и Тимур дурачатся на кровати в гостиничном номере, Москва" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Акт III читается сверху вниз: заголовок, под ним кадр, затем текст
+       (было — кадр слева, весь текстовый блок справа). Порядок как у
+       остальных актов: лейблы в 1–3 колонках, заголовок с 5-й. -->
+  <section class="sec wrap">
+    <div class="grid" style="margin-bottom:96px">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Акт III</p>
+        <p class="lbl lines d1" style="color:var(--ink);margin-top:8px">Свадьба</p>
+      </div>
+      <div style="grid-column:5 / span 7">
+        <h2 class="h2 lines">Один день, к которому шли годами. Я прихожу за час до и ухожу последним.</h2>
+      </div>
+    </div>
+    <div class="grid">
+      <div style="grid-column:1 / span 8">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/q07.jpg" alt="Жених и невеста бегут по набережной, Петербург" loading="lazy"></div></div>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:64px">
+      <div style="grid-column:5 / span 5">
+        <p class="txt">Свадьбу снимаю целиком, без пакетов на четыре часа. Мне нужно застать утро, когда ещё ничего не началось, и ночь, когда все уже сняли обувь. Между этим — двенадцать часов, в которых я почти не разговариваю. Ни списка обязательных кадров, ни постановки у арки: всё, что происходит, происходит само.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <p class="lbl lines" style="margin-bottom:64px">Коротко</p>
+    <div class="stats">
+      <div>
+        <span class="tmask num"><span class="rise">18</span></span>
+        <p class="cap">лет снимаю</p>
+      </div>
+      <div>
+        <span class="tmask num"><span class="rise d1">568</span></span>
+        <p class="cap">историй</p>
+      </div>
+      <div>
+        <span class="tmask num"><span class="rise d2">2008</span></span>
+        <p class="cap">первая свадьба</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="grid" style="margin-bottom:96px">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Акт IV</p>
+        <p class="lbl lines d1" style="color:var(--ink);margin-top:8px">Семья</p>
+      </div>
+      <div style="grid-column:5 / span 7">
+        <h2 class="h2 lines">Дальше начинается то, ради чего всё и было.</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <p class="lbl lines" style="margin-bottom:64px">Говорят пары</p>
+    <!-- Блок слева, без разделительных линий под цитатами. -->
+    <div class="grid">
+    <div style="grid-column:1 / span 6">
+    <div class="voicewrap reveal noline">
+      <div class="voice">
+        <p class="q">«Мы боялись, что будет неловко. Через полчаса я поймала себя на том, что рассказываю Ване про бабушку, а он в это время снимал. Неловко так и не стало».</p>
+        <p class="cap">Аня и Кирилл · Петербург · 2024</p>
+      </div>
+      <div class="voice">
+        <p class="q">«Ваня прислал шестьдесят кадров. Мама заплакала на четвёртом».</p>
+        <p class="cap">Марина и Тимур · Москва · 2023</p>
+      </div>
+      <div class="voice">
+        <p class="q">«Мы позвали его из Нью-Йорка, ни разу не встретившись. Единственный человек в списке, за которого мы не волновались».</p>
+        <p class="cap">Nina &amp; Michael · Нью-Йорк · 2024</p>
+      </div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/v13.jpg" alt="Аня и Кирилл обнимаются на ступенях у воды, Петербург" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/q07.jpg" alt="Марина и Тимур бегут по набережной, Москва" loading="lazy"></div></div>
+      <div class="thumb-follow"><div class="inner ph"><img src="img/q08.jpg" alt="Карусель в движении, Нью-Йорк" loading="lazy"></div></div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Мастер-класс — единственная тёмная секция в теле страницы (§3,
+       расхождение зафиксировано 2026-09-05). Она должна перебивать всё
+       остальное: чёрный холст, кадр во всю половину, крупные отступы. -->
+  <section class="sec mc" id="masterclass">
+    <div class="wrap">
+      <div class="grid" style="align-items:center">
+        <div style="grid-column:1 / span 5">
+          <p class="lbl lines">Второе</p>
+          <h2 class="h2 lines" style="margin-top:32px">Иногда я объясняю, как это устроено.</h2>
+          <div>
+            <p class="txt" style="margin-top:48px">Раз в несколько месяцев собираю небольшую группу и разбираю не настройки, а то, что происходит между людьми до нажатия на кнопку. Как войти в чужой день и не сломать его. Как разговаривать, чтобы перестали позировать. Что делать, когда света нет, а снимать надо.</p>
+            <p class="cap lines d1" style="margin-top:40px">[ДАТА] · [МЕСТО] · [ЦЕНА] · осталось [МЕСТ] мест</p>
+            <p class="lines d2" style="margin-top:56px"><a class="btn" href="#masterclass">Записаться на мастер-класс</a></p>
+          </div>
+        </div>
+        <div style="grid-column:7 / span 6">
+          <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/masterclass.jpg" alt="Иван снимает пару, обнявшуюся на кровати у окна" loading="lazy"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="napisat">
+    <div class="grid">
+      <div style="grid-column:1 / span 6">
+        <h2 class="h2 lines">Напишите мне.</h2>
+        <div>
+          <p class="txt" style="margin-top:40px">Четыре шага: что снимаем, город, дата, как вас зовут. Минута времени, ответ в течение суток.</p>
+          <p class="lines d1" style="margin-top:56px"><a class="nav" href="zayavka.html">Оставить заявку</a></p>
+        </div>
+      </div>
+      <!-- Кадр здесь подчинён заголовку, поэтому узкий: 3 колонки, не 5. -->
+      <div style="grid-column:10 / span 3">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:4/5"><img src="img/q12.jpg" alt="Двое едут на одном велосипеде" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:192px"></div>
+</main>
+
+<!-- Футер обнажается, а не появляется: лежит под контентом (§ 7.5). -->
+<div class="footshell"></div>
+<footer class="foot">
+  <div class="footgrid">
+    <div style="grid-column:1 / span 4">
+      <p class="cap" style="margin:0">Инди-фотограф</p>
+    </div>
+    <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <p class="lbl">Связь</p>
+      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+      <a class="nav" href="tel:[ТЕЛЕФОН]">[ТЕЛЕФОН]</a>
+    </div>
+    <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <p class="lbl">Смотреть</p>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+    </div>
+    <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
+      <p class="lbl">Язык</p>
+      <a class="nav" href="/en/">RU / EN</a>
+    </div>
+  </div>
+  <div style="height:64px"></div>
+  <p class="footname">Иван<br>Трояновский</p>
+  <div style="height:96px"></div>
+  <div class="footgrid">
+    <div style="grid-column:1 / span 12"><p class="cap" style="margin:0">© 2026</p></div>
+  </div>
+</footer>
+
+<!-- Сетка по кнопке — служебный оверлей для вёрстки (12 колонок, gutter,
+     поле страницы). Не часть дизайна страницы. -->
+<button class="gridtoggle" type="button" id="gridtoggle" aria-pressed="false">Сетка</button>
+<div class="gridoverlay" id="gridoverlay" aria-hidden="true">
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<script src="assets/config.js"></script>
+<script src="assets/photo-tilt.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

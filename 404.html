@@ -16,12 +16,13 @@
 <link rel="stylesheet" href="assets/base.css">
 <link rel="stylesheet" href="assets/photo-tilt.css">
 <link rel="stylesheet" href="assets/site.css">
+<script src="assets/config.js"></script>
 </head>
 <body>
 
 <!-- Прелоадера здесь нет: он держит первый экран, пока грузится видео героя
      (§ 8), а на странице ошибки героя нет. Навигация сразу solid — под ней
-     белый холст, а не фотография (§ 8), как на /zayavka.html. -->
+     белый холст, а не фотография (§ 8), как на страницах разделов. -->
 <header class="navbar solid">
   <a class="logo" href="/" aria-label="Иван Трояновский">
     <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -32,10 +33,10 @@
     </svg>
   </a>
   <nav class="navmenu" id="navmenu">
-    <a class="nav" href="/#istorii">Истории</a>
-    <a class="nav" href="/#masterclass">Мастер-класс</a>
-    <a class="nav" href="/#manifest">Обо мне</a>
-    <a class="nav" href="/">На главную</a>
+    <a class="nav" href="/">Портфолио</a>
+    <a class="nav" href="obuchenie.html" data-flag="learning">Обучение</a>
+    <a class="nav" href="magazin.html" data-flag="shop">Магазин</a>
+    <a class="nav" href="/en/">RU / EN</a>
   </nav>
   <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
     <span></span><span></span>
@@ -51,8 +52,8 @@
       <p class="txt" style="margin-top:40px">Такой страницы нет: то ли ссылку переписали, то ли я
         убрал историю по просьбе пары.</p>
       <div style="margin-top:48px;display:flex;flex-wrap:wrap;gap:16px 40px">
-        <a class="nav lines d1" href="/#istorii">Ко всем историям</a>
-        <a class="nav lines d2" href="/">На главную</a>
+        <a class="nav lines d1" href="/#istorii">К историям</a>
+        <a class="nav lines d2" href="/">В портфолио</a>
       </div>
       <p class="cap lines" style="margin-top:56px;color:var(--muted)">Если пришли по ссылке из письма —
         напишите мне на [ПОЧТА], пришлю рабочую</p>
@@ -79,7 +80,6 @@
     <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Связь</p>
       <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
-      <a class="nav" href="tel:[ТЕЛЕФОН]">[ТЕЛЕФОН]</a>
     </div>
     <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
       <p class="lbl">Смотреть</p>
@@ -97,7 +97,6 @@
   </div>
 </footer>
 
-<script src="assets/config.js"></script>
 <script src="assets/photo-tilt.js"></script>
 <script src="assets/site.js"></script>
 </body>

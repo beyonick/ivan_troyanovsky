@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ru" data-section="learning">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обучение — Иван Трояновский</title>
+<meta name="description" content="Видеоурок и мастер-классы Ивана Трояновского: как снимать людей, которые любят друг друга.">
+<meta property="og:title" content="Обучение — Иван Трояновский">
+<meta property="og:image" content="img/masterclass.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;1,300&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/photo-tilt.css">
+<link rel="stylesheet" href="assets/site.css">
+<!-- Флаг раздела: при sections.learning = false страница уводит на главную. -->
+<script src="assets/config.js"></script>
+</head>
+<body>
+
+<!--
+  Обучение (ТЗ v2 §4.2). Мастер-класс переехал сюда с главной; на главной
+  от него осталась одна тихая ссылка. Тёмная секция на странице одна —
+  видеоурок; вторая тёмная — футер (§3: ровно две, третьей нет).
+  Кнопка «Купить» — единственная залитая кнопка страницы (расширение §8:
+  раньше залитой была только отправка заявки). Покупка — внешний чекаут
+  из config.js (lessonCheckout); пока он пуст — письмо с темой «Видеоурок».
+  Все факты урока и мастер-классов — плейсхолдеры (§13), не выдумываем.
+-->
+
+<header class="navbar">
+  <a class="logo" href="/" aria-label="Иван Трояновский">
+    <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M16.4 26.6 C 9.7 21.7, 3.1 17.3, 4.1 11.1 C 4.8 6.9, 9.7 5.2, 13.2 8.2 C 14.4 9.3, 15.3 10.8, 15.9 12.1 C 16.6 10.5, 17.8 8.7, 19.4 7.6 C 23.2 5, 27.7 7.3, 27.4 11.9 C 27, 18.2, 20.5 22, 16.4 26.6 Z"/>
+      <path d="M3 23 L 26 5"/>
+      <path d="M26 5 L 21.1 6 M26 5 L 25.1 10.7"/>
+      <path d="M3 23 L 6.7 22 M3 23 L 5 26.2"/>
+    </svg>
+  </a>
+  <nav class="navmenu" id="navmenu">
+    <a class="nav" href="/">Портфолио</a>
+    <a class="nav" href="obuchenie.html" data-flag="learning" aria-current="page">Обучение</a>
+    <a class="nav" href="magazin.html" data-flag="shop">Магазин</a>
+    <a class="nav" href="/en/">RU / EN</a>
+  </nav>
+  <button class="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="navmenu">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+  <section class="wrap pagehead">
+    <div class="grid">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Обучение</p>
+      </div>
+      <div style="grid-column:5 / span 8">
+        <h1 class="h1 lines">Иногда я объясняю, как это устроено.</h1>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:96px">
+      <div style="grid-column:5 / span 5">
+        <p class="lead">Разбираю не настройки, а то, что происходит между людьми до нажатия на кнопку. Как войти в чужой день и не сломать его. Как разговаривать, чтобы перестали позировать. Что делать, когда света нет, а снимать надо.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="grid">
+      <div style="grid-column:1 / span 8">
+        <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/van-work.jpg" alt="Иван снимает девушку, лёжа на полу рядом с ней" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Видеоурок — первый продукт (ТЗ v2 §4.2): описание, цена, «Купить»,
+       доступ — ссылкой на почту после оплаты. Тёмная секция — одна из двух. -->
+  <section class="sec mc" id="videourok">
+    <div class="wrap">
+      <div class="grid" style="align-items:center">
+        <div style="grid-column:1 / span 5">
+          <p class="lbl lines">Онлайн</p>
+          <h2 class="h2 lines" style="margin-top:32px">Видеоурок</h2>
+          <p class="txt" style="margin-top:48px">[О ЧЁМ УРОК]</p>
+          <dl class="spec" style="margin-top:48px">
+            <div><dt>Что внутри</dt><dd>[ЧТО ВНУТРИ]</dd></div>
+            <div><dt>Длительность</dt><dd>[ДЛИТЕЛЬНОСТЬ]</dd></div>
+            <div><dt>Кому</dt><dd>[КОМУ ПОДОЙДЁТ]</dd></div>
+            <div><dt>Доступ</dt><dd>Ссылка на почту после оплаты</dd></div>
+            <div><dt>Цена</dt><dd>[ЦЕНА]</dd></div>
+          </dl>
+          <p class="lines d1" style="margin-top:56px"><a class="btn" href="#videourok" data-buy="Видеоурок">Купить</a></p>
+        </div>
+        <div style="grid-column:7 / span 6">
+          <div class="mask reveal" data-tilt><div class="inner ph" style="aspect-ratio:3/2"><img src="img/masterclass.jpg" alt="Иван снимает пару, обнявшуюся на кровати у окна" loading="lazy"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Мастер-классы вживую — по всему миру. Строки того же списка, что и
+       истории (§7.4): место антиквой, остальное капсом. Пока одна строка-
+       плейсхолдер; действие — текстовая ссылка, не вторая залитая кнопка. -->
+  <section class="sec wrap" id="masterklass">
+    <div class="grid">
+      <div style="grid-column:1 / span 3">
+        <p class="lbl lines">Мастер-классы</p>
+      </div>
+      <div style="grid-column:5 / span 8">
+        <h2 class="h2 lines">Вживую, в&nbsp;разных городах.</h2>
+      </div>
+    </div>
+    <div class="grid" style="margin-top:96px">
+      <div style="grid-column:5 / span 8">
+        <div class="bigindex reveal">
+          <div class="brow">
+            <span class="bname">[МЕСТО]</span>
+            <span class="bmeta"><time class="cap" style="margin:0">[ДАТА]</time><span class="cap" style="margin:0">[ФОРМАТ]</span><span class="cap" style="margin:0">[ЦЕНА]</span><span class="cap" style="margin:0">[МЕСТ] мест</span></span>
+          </div>
+        </div>
+        <p class="lines d1" style="margin-top:48px"><a class="nav" href="#masterklass" data-order="Мастер-класс">Написать про мастер-класс</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:192px"></div>
+</main>
+
+<div class="footshell"></div>
+<footer class="foot">
+  <div class="footgrid">
+    <div style="grid-column:1 / span 4">
+      <p class="cap" style="margin:0">Фотограф · по всему миру</p>
+    </div>
+    <div style="grid-column:6 / span 3;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <p class="lbl">Связь</p>
+      <a class="nav" href="mailto:[ПОЧТА]">[ПОЧТА]</a>
+    </div>
+    <div style="grid-column:9 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+      <p class="lbl">Смотреть</p>
+      <a class="nav" href="https://instagram.com/ivantroyanovsky" rel="noopener">Instagram</a>
+      <a class="nav" href="https://vk.ru/ivantroyanovsky" rel="noopener">VK</a>
+    </div>
+    <div style="grid-column:11 / span 2;display:flex;flex-direction:column;gap:16px;align-items:flex-end">
+      <p class="lbl">Язык</p>
+      <a class="nav" href="/en/">RU / EN</a>
+    </div>
+  </div>
+  <div style="height:64px"></div>
+  <p class="footname">Иван<br>Трояновский</p>
+  <div style="height:96px"></div>
+  <div class="footgrid">
+    <div style="grid-column:1 / span 12"><p class="cap" style="margin:0">© 2026</p></div>
+  </div>
+</footer>
+
+<script src="assets/photo-tilt.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

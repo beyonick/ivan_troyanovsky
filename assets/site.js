@@ -227,7 +227,9 @@
     var tokens = [];
     Array.prototype.forEach.call(src.childNodes, function (node) {
       if (node.nodeType === 3) {
-        (node.nodeValue || '').split(/\s+/).forEach(function (w) {
+        // Не /\s+/: в JS \s ловит и неразрывный пробел, а он ставится
+        // нарочно (§4: после однобуквенных предлогов) и рвать его нельзя.
+        (node.nodeValue || '').split(/[ \t\n\r\f\v]+/).forEach(function (w) {
           if (w) tokens.push({ word: w });
         });
         return;
@@ -318,9 +320,10 @@
     if (!els.length) return;
 
     els.forEach(splitLines);
+    bindResplit(els);
 
     if (reduce) {
-      els.forEach(function (el) { el.classList.add('in'); linesDone(el); });
+      els.forEach(function (el) { el.classList.add('in'); el.dataset.revealed = '1'; linesDone(el); });
       return;
     }
 
@@ -360,27 +363,37 @@
       if (left) setTimeout(sweep, 600);
     }
     setTimeout(sweep, 600);
+  }
 
-    // Заголовки многострочные — перенос слов зависит от ширины экрана,
-    // поэтому строки режем заново при resize (ориентация, ресайз окна).
+  // Заголовки многострочные — перенос слов зависит от ширины экрана,
+  // поэтому строки режем заново при resize (ориентация, ресайз окна) и
+  // после загрузки шрифтов. Вешается и при reduce: там анимации нет, но
+  // строки так же отмерены и так же могут вылезти за край.
+  function bindResplit(els) {
+    function resplit() {
+      els.forEach(function (el) {
+        var wasIn = el.dataset.revealed === '1';
+        splitLines(el);
+        if (wasIn) {
+          // Строки уже открыты — ставим их на место без повторного показа.
+          el.classList.add('no-anim');
+          el.classList.add('in');
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { el.classList.remove('no-anim'); });
+          });
+        }
+      });
+    }
     var t;
     window.addEventListener('resize', function () {
       clearTimeout(t);
-      t = setTimeout(function () {
-        els.forEach(function (el) {
-          var wasIn = el.dataset.revealed === '1';
-          splitLines(el);
-          if (wasIn) {
-            // Строки уже открыты — ставим их на место без повторного показа.
-            el.classList.add('no-anim');
-            el.classList.add('in');
-            requestAnimationFrame(function () {
-              requestAnimationFrame(function () { el.classList.remove('no-anim'); });
-            });
-          }
-        });
-      }, 150);
+      t = setTimeout(resplit, 150);
     });
+    // Первая нарезка идёт до загрузки веб-шрифтов: строки отмерены по
+    // запасному шрифту, а он у́же. С настоящим шрифтом отмеренная строка
+    // (nowrap) могла стать шире бокса и вылезти за край — найдено на
+    // подписи героя на 375px (v2). Режем заново, когда шрифты готовы.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(resplit);
   }
 
   // Лента истории (.htrack) раскрывается своим наблюдателем в story.js —
@@ -419,6 +432,25 @@
     scope.addEventListener('mouseleave', function () { active = -1; schedule(); });
     Array.prototype.forEach.call(rows, function (row, i) {
       row.addEventListener('mouseenter', function () { active = i; schedule(); });
+    });
+  }
+
+  /* — Покупка и заказ (ТЗ v2 §4.2–4.4). Адреса — только из config.js:
+       платёжная ссылка урока и ссылка заказа отпечатка. Пока они пусты,
+       то же действие открывает письмо с темой — человек не упирается
+       в мёртвую кнопку. — */
+
+  function bindCommerce() {
+    function mail(subject) {
+      return 'mailto:' + (cfg.email || '') + '?subject=' + encodeURIComponent(subject);
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('[data-buy]'), function (a) {
+      a.href = cfg.lessonCheckout || mail(a.getAttribute('data-buy'));
+      if (cfg.lessonCheckout) a.rel = 'noopener';
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-order]'), function (a) {
+      a.href = cfg.printOrder || mail(a.getAttribute('data-order'));
+      if (cfg.printOrder) a.rel = 'noopener';
     });
   }
 
@@ -494,6 +526,9 @@
     bindHeroName();
     bindNav();
     bindReveals();
+    // До bindLines: нарезка строк пересобирает ссылку из исходного HTML
+    // (dataset.raw), и адрес, выставленный позже, потерялся бы.
+    bindCommerce();
     bindLines();
     bindFollow('.bigindex', '.brow');
     bindFollow('.voicewrap', '.voice');

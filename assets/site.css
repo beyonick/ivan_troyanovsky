@@ -11,6 +11,11 @@ section[id]{scroll-margin-top:120px}
 .navbar .logo{display:block;line-height:0;background-image:none}
 .navbar .logo svg{display:block;color:inherit}
 .navmenu{display:flex;gap:40px;align-items:center}
+/* Текущий раздел — линия стоит, а не растёт (v2: три пункта меню). */
+.navmenu a[aria-current="page"]{background-size:100% 1px}
+
+/* Флаги разделов из config.js: выключенный раздел прячет все свои входы. */
+.off-learning [data-flag="learning"],.off-shop [data-flag="shop"]{display:none!important}
 .burger{display:none;background:none;border:0;padding:12px;margin:-12px;cursor:pointer;color:inherit;font:inherit}
 .burger span{display:block;width:22px;height:1px;background:currentColor}
 .burger span+span{margin-top:6px}
@@ -33,15 +38,13 @@ section[id]{scroll-margin-top:120px}
 .heroname{position:absolute;inset:0;z-index:2;
   display:flex;align-items:center;pointer-events:none}
 
-/* Положение имени (правка 2026-09-07, замена якоря в 3-ю колонку).
-   Блок имени центрируется по горизонтали и вертикали вьюпорта; строки
-   «Иван» и «Трояновский» внутри блока выровнены по его левому краю.
-   Прелоадер и герой правятся вместе — они обязаны совпадать 1:1.
-   РАСХОЖДЕНИЕ с DESIGN.md §8 (там зафиксировано grid-column:3 / span 8) —
-   названо вслух, файл нужно привести в соответствие. */
-.preload .grid,.heroname .grid{display:block}
-.preload .heroname-inner,.heroname .heroname-inner{grid-column:auto}
-.preload .namemark,.heroname .namemark{width:max-content;max-width:100%;margin-inline:auto}
+/* Положение имени (правка 2026-09-07): блок имени центрируется по
+   горизонтали и вертикали вьюпорта; строки «Иван» и «Трояновский» внутри
+   блока выровнены по его левому краю. Прелоадер и герой правятся вместе —
+   они обязаны совпадать 1:1. v2: центрируется не сама марка, а её обёртка
+   .heroname-inner — к ней абсолютно привязана подпись под именем, поэтому
+   подпись не сдвигает имя и прелоадер по-прежнему совпадает с героем. */
+.preload .heroname-inner,.heroname .heroname-inner{position:relative;width:max-content;max-width:100%;margin-inline:auto}
 
 .namemark{margin:0;font-family:"Cormorant Infant",Georgia,serif;font-weight:300;
   font-size:clamp(56px,11vw,200px);line-height:.92;letter-spacing:-.02em;color:var(--on-dark)}
@@ -64,7 +67,7 @@ section[id]{scroll-margin-top:120px}
    которую убрали целиком — дублировала имя). Уточнено 2026-09-05: больше
    отступа от имени, в одну строку (nowrap) на desktop; на mobile перенос
    разрешён обратно — иначе строка не влезает и вылезает за --hero-inset. */
-.herotag{margin:40px 0 0;font-size:15px;line-height:1.55;color:var(--on-dark);white-space:nowrap}
+.herotag{position:absolute;left:0;top:100%;margin:40px 0 0;font-size:15px;line-height:1.55;color:var(--on-dark);white-space:nowrap}
 
 /* Два действия под видео героя (уточнено 2026-09-05: были CTA-ссылками поверх
    видео, теперь — блоки в потоке страницы, сразу под героем, на белом холсте).
@@ -74,6 +77,28 @@ section[id]{scroll-margin-top:120px}
 .heroaction{display:block;background-image:none;color:inherit}
 .heroaction .h3{display:inline-block;transition:transform 300ms var(--ease-ui)}
 .heroaction:hover .h3{transform:translateX(10px)}
+
+/* Портфолио v2 — десять кадров неровным ритмом (ТЗ v2 §4.1, §5–§6).
+   Каждый кадр в своём ряду; .up подтягивает ряд вверх, чтобы кадр зашёл
+   по вертикали за соседа с другой стороны сетки (в один ряд они не
+   встают, колонки не пересекаются). Величина — в vw: высота соседа тоже
+   растёт от ширины экрана. */
+.pfstart{margin-top:160px}
+.pf{margin-top:192px}
+.pf:first-child{margin-top:0}
+.pf.up{margin-top:-18vw}
+.pf.up-l{margin-top:-24vw}
+/* Кадр во весь экран (§5: ~88vh внутри поля) — без маски и наклона (§7.8-бис). */
+.ph.full{height:88vh;min-height:420px}
+
+/* Истории — по mersi-architecture.com/projets: обложка, под ней одна
+   строка — имя слева, город и год справа. Ссылка — вся карточка-кадр;
+   линии под ней нет, на ховере имя сдвигается на 10px, как у .brow. */
+.storyitem{display:block;background-image:none;color:inherit}
+.storyitem:hover{background-image:none}
+.sline{display:flex;justify-content:space-between;align-items:baseline;gap:var(--gutter);margin-top:20px}
+.sname{font-family:"Cormorant Infant",Georgia,serif;font-weight:300;font-size:clamp(28px,2.6vw,44px);line-height:1;letter-spacing:-.015em;color:var(--ink);display:inline-block;transition:transform 300ms var(--ease-ui)}
+.storyitem:hover .sname{transform:translateX(10px)}
 
 /* Стадии истории */
 .stages{display:flex;gap:40px;align-items:baseline;flex-wrap:wrap}
@@ -144,6 +169,14 @@ main{position:relative;z-index:1;background:var(--canvas)}
   .grid>*{grid-column:1!important;margin-top:0!important;margin-left:0!important;width:auto!important}
   .sec .grid[style*="margin-top"]{margin-top:64px!important}
   .bleed{width:100%!important}
+  .pfstart{margin-top:96px}
+  .pf,.pf.up,.pf.up-l{margin-top:64px}
+  .pf:first-child{margin-top:0}
+  /* Вертикальный кадр на всю ширину планшета — выше экрана. Сужаем и
+     чередуем край, чтобы ритм остался неровным и в одну колонку. */
+  .grid>.fv{width:64%!important}
+  .grid>.fv.r{justify-self:end}
+  .ph.full{height:auto;min-height:0;aspect-ratio:3/2}
 }
 @media (max-width:768px){
   .herotag{white-space:normal;max-width:100%}
@@ -151,7 +184,12 @@ main{position:relative;z-index:1;background:var(--canvas)}
   .navmenu{position:fixed;inset:0;background:var(--canvas);flex-direction:column;justify-content:center;gap:32px;display:none;mix-blend-mode:normal}
   .navmenu a{color:var(--ink);background-image:linear-gradient(var(--ink),var(--ink));font-size:14px}
   .navbar.open{mix-blend-mode:normal}
-  .navbar.open .navmenu{display:flex}
+  .navbar.open .navmenu{display:flex;gap:8px}
+  /* Открытое меню — белый холст: белый над героем логотип на нём пропадал. */
+  .navbar.open .logo{color:var(--ink);position:relative;z-index:1}
+  /* Тач-цели ≥ 44px (§11, ТЗ v2 §8): текстовая ссылка 11–14px получает
+     поле сверху и снизу, линия остаётся под самим текстом (content-box). */
+  a.nav,.ecsec a{padding:14px 0;background-origin:content-box;background-clip:content-box}
   .burger{display:block;min-width:44px;min-height:44px}
   .navbar .logo{transform:translateX(8px)}
   .navbar .burger{transform:translateX(-8px)}
@@ -161,6 +199,8 @@ main{position:relative;z-index:1;background:var(--canvas)}
   .bmeta{gap:16px;flex-wrap:wrap}
   .brow{flex-direction:column;align-items:flex-start;gap:12px}
   .thumb-follow{display:none}
+  .grid>.fv{width:86%!important}
+  .sline{flex-direction:column;gap:8px}
 }
 
 /* Мастер-класс — единственная тёмная секция в теле страницы (§3, расхождение
@@ -175,6 +215,42 @@ main{position:relative;z-index:1;background:var(--canvas)}
 .mc .btn:hover{background:var(--canvas);color:var(--ink)}
 @media (max-width:768px){
   .mc{padding:96px 0}
+}
+
+/* Страницы разделов v2 — Обучение и Магазин (ТЗ v2 §4.2, §4.4).
+   Героя нет, шапка сразу solid (site.js); отступ сверху — под неё. */
+.pagehead{padding-top:220px}
+
+/* Характеристики (урок, отпечаток): строки на волоске 1px (§3), термин —
+   лейбл серым, значение — тем же капсом, но --ink, по правому краю. */
+.spec{margin:40px 0 0;padding:0}
+.spec>div{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:14px 0;border-top:1px solid var(--hairline)}
+.spec>div:last-child{border-bottom:1px solid var(--hairline)}
+.spec dt,.spec dd{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.spec dt{color:var(--muted)}
+.spec dd{margin:0;color:var(--ink);text-align:right}
+.mc .spec>div{border-color:rgba(255,255,255,.2)}
+.mc .spec dt{color:rgba(255,255,255,.5)}
+.mc .spec dd{color:var(--on-dark)}
+
+/* Магазин: одна работа — один экран. Кадр целиком по своей пропорции
+   (--ar в разметке), шириной в колонки, но не выше 86% экрана — поэтому
+   вертикальный кадр сужается, а не вылезает за экран. Без маски и наклона
+   (§7.8-бис). Текст — мелким столбцом рядом, по нижнему краю кадра. */
+.work{min-height:100svh;display:flex;align-items:center;padding:64px 0}
+.work>.wrap{width:100%}
+.workgrid{align-items:end}
+.workframe .ph{aspect-ratio:var(--ar);width:min(100%,calc(86svh * var(--ar)))}
+.workframe.end .ph{margin-left:auto}
+.wname{font-family:"Cormorant Infant",Georgia,serif;font-weight:300;font-size:clamp(28px,2.6vw,44px);line-height:1;letter-spacing:-.015em;color:var(--ink);margin:16px 0 0}
+
+@media (max-width:1024px){
+  .work{min-height:0;padding:48px 0}
+  .workframe{order:-1}
+  .workframe.end .ph{margin-left:0}
+}
+@media (max-width:768px){
+  .pagehead{padding-top:140px}
 }
 
 /* Сетка по кнопке — служебный оверлей для вёрстки, не часть дизайна.

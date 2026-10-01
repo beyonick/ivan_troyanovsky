@@ -5,14 +5,16 @@
   --canvas:#FFFFFF; --ink:#0A0A0A; --body:#111111;
   --muted:#6E6E6E; --hairline:#E5E5E5; --on-dark:#FFFFFF;
   --page-margin:64px; --max-width:none; --gutter:24px; --section-gap:320px;
-  --hero-inset:24px;
+  /* Герой на весь экран, без белой рамки (ТЗ v2, расхождение №1 с §5:
+     было 24px / 20px). Переменная оставлена — вернуть рамку в один шаг. */
+  --hero-inset:0px;
   /* Алый — единственный неоновый акцент вне фотографий (2026-09-05):
      выделение текста, тема любви/сердца. Расхождение с §3 названо в DESIGN.md. */
   --accent-love:#E8283C;
   --ease-reveal:cubic-bezier(.16,1,.3,1); --ease-ui:cubic-bezier(.65,0,.35,1);
 }
 @media (max-width:768px){
-  :root{--page-margin:20px;--section-gap:160px;--hero-inset:20px}
+  :root{--page-margin:20px;--section-gap:160px;--hero-inset:0px}
 }
 
 *{box-sizing:border-box}
