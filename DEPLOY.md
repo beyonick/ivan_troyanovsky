@@ -3,9 +3,8 @@
 ## Коротко
 
 - **Код** — GitHub, `beyonick/ivan_troyanovsky`, ветка `main`.
-- **Хостинг** — TimeWeb, забирает сайт из репозитория. Сборки нет: отдаётся
-  корень репозитория как есть.
-- **Домен** — рег.ру, поддомен `nicktmsh.ru`, DNS смотрит на TimeWeb.
+- **Хостинг** — виртуальный хостинг TimeWeb, сайт заливает GitHub Actions по SFTP.
+- **Домен** — `ivantroyanovsky.nicktmsh.ru` (рег.ру), DNS смотрит на TimeWeb.
 - **Медиа** (кадры и видео героя) лежат в репозитории и раздаются тем же
   хостингом. Внешних хранилищ нет.
 
@@ -15,24 +14,33 @@
 
 ## 1. Деплой
 
-Каждый пуш в `main` (руками или кнопкой «Опубликовать» в админке) TimeWeb
-подхватывает сам. Настройки на стороне TimeWeb:
+Виртуальный хостинг TimeWeb, сайт `ivantroyanovsky`, папка
+`ivantroyanovsky/public_html`. Каждый пуш в `main` (руками или кнопкой
+«Опубликовать» в админке) запускает GitHub Actions
+(`.github/workflows/deploy-hosting.yml`): `.github/deploy-hosting.sh` собирает
+`_deploy/` и заливает его по SFTP через `lftp mirror --delete`.
 
-- репозиторий `beyonick/ivan_troyanovsky`, ветка `main`;
-- команда сборки — пусто, каталог публикации — корень (`/`);
-- если это App Platform, тип — статический сайт / HTML.
+В сборку не идут `admin/`, `.github/`, `README.md`, `DEPLOY.md`. Ссылки на css и
+js получают `?v=<хэш>`: nginx TimeWeb кэширует их на год, и без версии правки
+из админки не дошли бы до посетителей.
 
-`.htaccess` в корне нужен виртуальному хостингу (Apache): страница 404,
-закрытая `admin/`, долгий кэш для картинок и видео. В nginx-контейнере
-он ничего не делает — тогда закрыть `admin/` и задать кэш нужно в настройках
-приложения.
+Настройки в GitHub → Settings → Secrets and variables → Actions:
+
+| Что | Где | Значение |
+|---|---|---|
+| `HOSTING_HOST` | Variables | SFTP-хост TimeWeb |
+| `HOSTING_USER` | Variables | логин хостинга |
+| `HOSTING_PASSWORD` | Secrets | пароль хостинга |
+| `HOSTING_DIR` | Variables, необязательно | по умолчанию `ivantroyanovsky/public_html` |
+
+Пока `HOSTING_HOST` пуст, деплой собирается и пропускает заливку с
+предупреждением. Собрать локально без заливки: `bash .github/deploy-hosting.sh`.
 
 ## 2. Домен и HTTPS
 
-DNS у рег.ру указывает на TimeWeb, сертификат Let's Encrypt выпускается в
-панели TimeWeb. **В имени поддомена нельзя использовать подчёркивание**:
-Let's Encrypt не выпускает сертификаты на такие имена, и сайт останется без
-HTTPS. Использовать дефис: `ivan-troyanovsky.nicktmsh.ru`.
+`ivantroyanovsky.nicktmsh.ru`, DNS у рег.ру смотрит на TimeWeb. Сертификат
+Let's Encrypt включается в панели TimeWeb у сайта; `.htaccess` пропускает
+проверку `.well-known/acme-challenge`.
 
 ## 3. Видео героя
 

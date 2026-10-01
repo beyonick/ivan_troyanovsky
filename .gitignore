@@ -4,3 +4,4 @@ node_modules/
 
 # Копии контента перед каждым сохранением из админки
 admin/backups/
+_deploy/

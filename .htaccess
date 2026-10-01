@@ -1,17 +1,26 @@
-# Работает на хостинге с Apache (виртуальный хостинг TimeWeb).
-# На nginx-контейнере файл просто игнорируется.
-
+Options -Indexes -MultiViews
+DirectoryIndex index.html
 ErrorDocument 404 /404.html
+AddType font/woff2 .woff2
+AddType video/webm .webm
 
-# Админка работает только локально (admin/server.py), наружу её не отдаём.
-RedirectMatch 404 ^/admin(/|$)
-RedirectMatch 404 ^/(DEPLOY|README)\.md$
+RewriteEngine On
 
+# Проверка Let's Encrypt должна дойти до хостинга, иначе сертификат не выпустится.
+RewriteRule ^\.well-known/acme-challenge/ - [L]
+
+# Главный адрес — без www.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# html, css, js браузер всегда сверяет с сервером, медиа держит сутки.
+# css и js nginx TimeWeb отдаёт сам с кэшем на год — от этого спасает ?v=<хэш>,
+# который проставляет .github/deploy-hosting.sh.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(webp|jpe?g|png|webm|mp4|woff2)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+  <FilesMatch "\.(html|css|js|json)$">
+    Header set Cache-Control "no-cache"
   </FilesMatch>
-  <FilesMatch "\.(css|js)$">
-    Header set Cache-Control "public, max-age=3600, must-revalidate"
+  <FilesMatch "\.(woff2|png|jpe?g|webp|svg|ico|webm|mp4)$">
+    Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 </IfModule>

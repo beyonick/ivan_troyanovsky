@@ -1,0 +1,24 @@
+name: Deploy to hosting
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hosting
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HOSTING_PROTOCOL: ${{ vars.HOSTING_PROTOCOL || 'sftp' }}
+      HOSTING_HOST: ${{ vars.HOSTING_HOST }}
+      HOSTING_USER: ${{ vars.HOSTING_USER }}
+      HOSTING_DIR: ${{ vars.HOSTING_DIR || 'ivantroyanovsky/public_html' }}
+      HOSTING_PASSWORD: ${{ secrets.HOSTING_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get install -y -qq lftp
+      - run: bash .github/deploy-hosting.sh --upload
